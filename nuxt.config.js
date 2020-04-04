@@ -1,4 +1,4 @@
-const config = require("./.contentful.json");
+const config = require("./lib/.contentful.json");
 
 module.exports = {
   /*

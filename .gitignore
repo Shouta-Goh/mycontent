@@ -11,4 +11,4 @@ npm-debug.log
 dist
 
 # contentful.json environment variables file
-.contentful.json
+lib
