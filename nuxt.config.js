@@ -1,17 +1,15 @@
-const config = require("./lib/.contentful.json");
+require('dotenv').config();
+const { API_KEY } = process.env;
 
 module.exports = {
   /*
    ** Headers of the page
    */
   env: {
-    CTF_SPACE_ID: config.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: config.CTF_CDA_ACCESS_TOKEN,
-    CTF_PERSON_ID: config.CTF_PERSON_ID,
-    CTF_BLOG_POST_TYPE_ID: config.CTF_BLOG_POST_TYPE_ID
+    API_KEY
   },
   head: {
-    title: "aaaaa",
+    title: "Shou's Blog Site",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -49,8 +47,25 @@ module.exports = {
   },
   
   modules: [
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
+    '@nuxtjs/dotenv',
   ],
+
+  generate: {
+    routes() {
+      return client.getEntries({
+        'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
+        order: '-sys.createdAt'
+      }).then(entries => {
+        return entries.items.map(entry => {
+          return {
+            route: `posts/${entry.fields.slug}`,
+            payload: entry
+          }
+        })
+      })
+    }
+  },
 
   markdownit: {
     injected: true, // $mdを利用してmarkdownをhtmlにレンダリングする
