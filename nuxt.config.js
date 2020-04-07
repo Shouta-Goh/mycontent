@@ -61,6 +61,13 @@ module.exports = {
   buildModules: [
     '@nuxtjs/vuetify'
   ],
+
+  router: {
+    middleware: [
+      'getContentful'
+    ]
+  },
+  
   vuetify: {
     /* module options */
   },
@@ -83,7 +90,9 @@ module.exports = {
       .then(([entries]) => {
         return [
           // map entries to URLs
-          ...entries.items.map(entry => `/blog/${entry.fields.slug}`)
+          ...entries.items.map(entry =>{
+            return { route :`/blog/${entry.fields.slug}`, payload: entry}
+          })
         ]
       })
     }

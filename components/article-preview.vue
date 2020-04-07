@@ -1,35 +1,30 @@
 <template>
   <article>
     <v-hover v-slot:default="{ hover }">
-    <nuxt-link :to="{ name: 'blog-slug', params: { slug: post.fields.slug }}">
+    <nuxt-link :to="linkTo('blog', post)">
       <v-card 
       height="420"
       max-width="400"
       :elevation="hover ? 12 : 2">
         <v-img
           class="thumbnail"
-          :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'"
-          :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=196&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=562&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=1125&fit=fill 2000w`"
-          sizes="(min-width: 1024px) 400px, 100vw"
+          :src="setEyeCatch(post).url"
+          :alt="setEyeCatch(post).title"
+          :aspect-ratio="16/9"
+          max-height="200"
         ></v-img>
 
         <v-card-title>
           <nuxt-link
-            :to="{ name: 'blog-slug', params: { slug: post.fields.slug }}"
+            :to="linkTo('blog',post)"
             class="title"
           >{{ post.fields.title }}</nuxt-link>
         </v-card-title>
-        <v-card-text>{{ post.fields.description }}</v-card-text>
+        <v-card-text>
+          {{ post.fields.description }}
+          <span :is="draftChip(post)" />
+        </v-card-text>
 
-        <!--タグのリンク--><!--
-        <div class="tags">
-          <nuxt-link
-            v-for="tag in post.fields.tags"
-            :key="tag"
-            :to="{ name: 'tags-tag', params: { tag: tag }}"
-            class="tag"
-          >{{ tag }}</nuxt-link>
-        </div>-->
         <v-card-text>
           <time class="tiny date">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
         </v-card-text>
@@ -40,9 +35,20 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+import draftChip from '~/components/posts/draftChip'
+
 export default {
+  components: {
+    draftChip
+  },
+  computed: {
+    ...mapState(['posts']),
+    ...mapGetters(['setEyeCatch', 'draftChip', 'linkTo'])
+  },
   props: ["post"]
-};
+
+}
 </script>
 
 <style>

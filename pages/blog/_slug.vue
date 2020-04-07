@@ -12,10 +12,12 @@
           <v-row>
             <v-col>
               <v-img
-                :src="post.fields.heroImage.fields.file.url + '?fit=scale&w=350&h=196'"
-                :srcset="`${post.fields.heroImage.fields.file.url}?w=350&h=87&fit=fill 350w, ${post.fields.heroImage.fields.file.url}?w=1000&h=250&fit=fill 1000w, ${post.fields.heroImage.fields.file.url}?w=2000&h=500&fit=fill 2000w`"
-                size="100%"
-                :alt="post.fields.heroImage.fields.description"
+                :src="setEyeCatch(post).url"
+                :alt="setEyeCatch(post).title"
+                :aspect-ratio="16/9"
+                width="700"
+                height="400"
+                class="mx-auto"
               ></v-img>
             </v-col>
           </v-row>
@@ -57,30 +59,25 @@
 </template>
 
 <script>
-import { createClient } from "~/plugins/contentful.js";
 import ArticlePreview from "~/components/article-preview.vue";
-
-const client = createClient();
+import { mapGetters } from 'vuex';
 
 export default {
-  asyncData({ env, params, payload }) {
-    // payloadのデータがあれば、そちらから取得する
-    if (payload) return { post: payload }
-    return client
-      .getEntries({
-        content_type: env.CTF_BLOG_POST_TYPE_ID,
-        "fields.slug": params.slug
-      })
-      .then(entries => {
-        return {
-          post: entries.items[0]
-        };
-      })
-      .catch(console.error);
+  async asyncData({ payload, store, params, error }) {
+    const post = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
+
+    if (post) {
+      return { post }
+    } else {
+      return error({ statusCode: 400 })
+    }
   },
   components: {
     ArticlePreview
-  }
+  },
+  computed: {
+    ...mapGetters(['setEyeCatch'])
+  },
 };
 </script>
 
