@@ -63,7 +63,9 @@ import ArticlePreview from "~/components/article-preview.vue";
 const client = createClient();
 
 export default {
-  asyncData({ env, params }) {
+  asyncData({ env, params, payload }) {
+    // payloadのデータがあれば、そちらから取得する
+    if (payload) return { post: payload }
     return client
       .getEntries({
         content_type: env.CTF_BLOG_POST_TYPE_ID,

@@ -9,6 +9,7 @@
           <v-row justify="center">
             <li v-for="(post,key) in posts" :key="key">
               <v-col>
+                {{ post.fields.title }}
                 <article-preview :post="post"></article-preview>
               </v-col>
             </li>

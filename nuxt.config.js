@@ -1,12 +1,31 @@
-require('dotenv').config();
-const { API_KEY } = process.env;
+const {getConfigForKeys} = require('./lib/config.js')
+const ctfConfig = getConfigForKeys([
+  'CTF_BLOG_POST_TYPE_ID',
+  'CTF_SPACE_ID',
+  'CTF_CDA_ACCESS_TOKEN',
+  'CTF_CMA_ACCESS_TOKEN',
+  'CTF_PERSON_ID'
+])
+const {createClient} = require('./plugins/contentful')
+const cdaClient = createClient(ctfConfig)
+const cmaContentful = require('contentful-management')
+const cmaClient = cmaContentful.createClient({
+  accessToken: ctfConfig.CTF_CMA_ACCESS_TOKEN
+})
 
 module.exports = {
   /*
    ** Headers of the page
    */
+  /*
   env: {
     API_KEY
+  },*/
+  env: {
+    CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: ctfConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_PERSON_ID: ctfConfig.CTF_PERSON_ID,
+    CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
   },
   head: {
     title: "Shou's Blog Site",
@@ -48,21 +67,24 @@ module.exports = {
   
   modules: [
     '@nuxtjs/markdownit',
-    '@nuxtjs/dotenv',
   ],
 
   generate: {
-    routes() {
-      return client.getEntries({
-        'content_type': process.env.CTF_BLOG_POST_TYPE_ID,
-        order: '-sys.createdAt'
-      }).then(entries => {
-        return entries.items.map(entry => {
-          return {
-            route: `posts/${entry.fields.slug}`,
-            payload: entry
-          }
-        })
+    routes () {
+      return Promise.all([
+        // get all blog posts
+        cdaClient.getEntries({
+          'content_type': ctfConfig.CTF_BLOG_POST_TYPE_ID
+        }),
+        // get the blog post content type
+        cmaClient.getSpace(ctfConfig.CTF_SPACE_ID)
+          .then(space => space.getContentType(ctfConfig.CTF_BLOG_POST_TYPE_ID))
+      ])
+      .then(([entries]) => {
+        return [
+          // map entries to URLs
+          ...entries.items.map(entry => `/blog/${entry.fields.slug}`)
+        ]
       })
     }
   },
