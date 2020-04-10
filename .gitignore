@@ -12,3 +12,5 @@ dist
 
 # Contentful configs
 .contentful.json
+
+.vscode

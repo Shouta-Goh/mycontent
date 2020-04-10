@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
       <v-col cols="12" sm="8">
         <header class="article header">
@@ -25,26 +26,17 @@
 
         <section class="body-container">
           <main class="wrapper">
+            <!--Category-->
+            <v-breadcrumbs :items="breadcrumbs">
+              <template #divider>
+                <v-icon>mdi-chevron-right</v-icon>
+              </template>
+            </v-breadcrumbs>
             <div class="headline">
               <time class="tiny">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
               <h1>{{ post.fields.title }}</h1>
             </div>
-            <v-card-text style="height: 64px;">
-              <template v-if="post.fields.tags">
-                <v-chip
-                  v-for="(tag) in post.fields.tags"
-                  :key="tag.sys.id"
-                  to="#"
-                  small
-                  label
-                  outlined
-                  class="ma-1"
-                >
-                  <v-icon left size="18" color="grey">mdi-label</v-icon>
-                  {{ tag.fields.name }}
-                </v-chip>
-              </template>
-            </v-card-text>
+
             <div class="copy">
               <div v-html="$md.render(post.fields.body)"></div>
             </div>
@@ -60,28 +52,57 @@
 
 <script>
 import ArticlePreview from "~/components/article-preview.vue";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   async asyncData({ payload, store, params, error }) {
-    const post = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
+    const post =
+      payload ||
+      (await store.state.posts.find(post => post.fields.slug === params.slug));
 
     if (post) {
-      return { post }
+      return { 
+        post,
+        category: post.fields.category
+        }
     } else {
-      return error({ statusCode: 400 })
+      return error({ statusCode: 400 });
     }
   },
   components: {
     ArticlePreview
   },
   computed: {
-    ...mapGetters(['setEyeCatch'])
-  },
+    ...mapGetters(["setEyeCatch", 'linkTo']),
+    breadcrumbs() {
+      const category = this.post.fields.category;
+      return [
+        { text: "ホーム", to: "/" },
+        { text: category.fields.name, to: this.linkTo('categories', this.category) }
+      ];
+    },
+    addBreads() {
+      return [
+        {
+          icon: 'mdi-folder-outline',
+          text: this.category.fields.name,
+          to: this.linkTo('categories', this.category)
+        }
+      ]
+    }
+  }
 };
 </script>
 
 <style>
+
+.table-of-contents {
+        background: #f3f3f3;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        width: fit-content;
+}
+
 .foreground .page-bar {
   border-bottom: 0;
 }
@@ -119,5 +140,4 @@ export default {
 .copy li {
   margin: 0;
 }
-
 </style>

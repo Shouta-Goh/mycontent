@@ -71,6 +71,11 @@ module.exports = {
   vuetify: {
     /* module options */
   },
+
+  plugins: [
+    'plugins/components',
+    'plugins/markdownit'
+  ],
   
   modules: [
     '@nuxtjs/markdownit',
@@ -83,29 +88,26 @@ module.exports = {
         cdaClient.getEntries({
           'content_type': ctfConfig.CTF_BLOG_POST_TYPE_ID
         }),
+        //get all categories
+        cdaClient.getEntries({
+          content_type: 'category'
+        }),
         // get the blog post content type
         cmaClient.getSpace(ctfConfig.CTF_SPACE_ID)
           .then(space => space.getContentType(ctfConfig.CTF_BLOG_POST_TYPE_ID))
       ])
-      .then(([entries]) => {
+      .then(([entries,categories]) => {
         return [
           // map entries to URLs
           ...entries.items.map(entry =>{
             return { route :`/blog/${entry.fields.slug}`, payload: entry}
+          }),
+          //map categories to URLs
+          ...categories.items.map((category) => {
+            return { route: `categories/${category.fields.slug}`, payload: category }
           })
         ]
       })
     }
   },
-
-  markdownit: {
-    injected: true, // $mdを利用してmarkdownをhtmlにレンダリングする
-    breaks: true, // 改行コードを<br>に変換する
-    html: true, // HTML タグを有効にする
-    linkify: true, // URLに似たテキストをリンクに自動変換する
-    typography: true,  // 言語に依存しないきれいな 置換 + 引用符 を有効にします。
-    use: [
-      'markdown-it-toc' // 目次を作るためのライブラリ。別途インストールが必要
-    ]
-  }
 };
