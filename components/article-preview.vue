@@ -2,7 +2,7 @@
   <article>
     <v-hover v-slot:default="{ hover }">
       <nuxt-link :to="linkTo('blog', post)" class="link">
-        <v-card width="430" height="500" :elevation="hover ? 12 : 2">
+        <v-card width="400" height="500" v-ripple :elevation="hover ? 12 : 2">
           <v-img
             class="thumbnail"
             :src="setEyeCatch(post).url"
@@ -23,13 +23,13 @@
           </v-img>
 
           <v-card-title class="title">{{ post.fields.title }}</v-card-title>
-          
+
           <v-card-text>
             {{ post.fields.description }}
             <span :is="draftChip(post)" />
           </v-card-text>
-          
-          <v-card-subtitle> 
+
+          <v-card-subtitle>
             <time class="tiny date">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
           </v-card-subtitle>
         </v-card>

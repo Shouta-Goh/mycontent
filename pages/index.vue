@@ -83,7 +83,7 @@ export default {
   computed: {
     ...mapState(["posts", "person"]),
     ...mapGetters(["setPersonEyeCatch"])
-  }
+  },
 };
 </script>
 
