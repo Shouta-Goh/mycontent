@@ -15,13 +15,14 @@
                 hide-details
               />
             </v-card-title>
-
-            <v-data-table :headers="headers" :items="tableItems" :search="search" 
-    :single-expand="true"
-    show-expand>
+            
+            <v-data-table
+              :headers="headers"
+              :items="tableItems"
+              :search="search"
+            >
               <template v-slot:item.fields.name="{ item }">
                 <v-icon size="18">mdi-tag-outline</v-icon>
-
                 <nuxt-link :to="linkTo('categories', item)">{{ item.fields.name }}</nuxt-link>
               </template>
             </v-data-table>
@@ -36,14 +37,13 @@
 import { mapState, mapGetters } from "vuex";
 
 export default {
-  
-   data: () => ({
+  data: () => ({
     search: "",
     headers: [
       {
         text: "カテゴリー",
         align: "left",
-        value: "fields.name"//category.fields.name
+        value: "fields.name" //category.fields.name
       }
     ]
   }),
@@ -71,5 +71,4 @@ export default {
     }
   }
 };
-
 </script>

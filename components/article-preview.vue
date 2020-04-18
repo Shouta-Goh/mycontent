@@ -2,13 +2,14 @@
   <article>
     <v-hover v-slot:default="{ hover }">
       <nuxt-link :to="linkTo('blog', post)" class="link">
-        <v-card  width="400" :elevation="hover ? 12 : 2">
+        <v-card width="430" height="500" :elevation="hover ? 12 : 2">
           <v-img
             class="thumbnail"
             :src="setEyeCatch(post).url"
             :alt="setEyeCatch(post).title"
             :aspect-ratio="16/9"
-            max-height="200"
+            max-height="250"
+            max-width="500"
           >
             <v-card-text>
               <v-chip
@@ -21,17 +22,16 @@
             </v-card-text>
           </v-img>
 
-          <v-card-title class="title">
-            {{ post.fields.title }}
-          </v-card-title>
+          <v-card-title class="title">{{ post.fields.title }}</v-card-title>
+          
           <v-card-text>
             {{ post.fields.description }}
             <span :is="draftChip(post)" />
           </v-card-text>
-
-          <v-card-text>
+          
+          <v-card-subtitle> 
             <time class="tiny date">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
-          </v-card-text>
+          </v-card-subtitle>
         </v-card>
       </nuxt-link>
     </v-hover>
@@ -40,29 +40,28 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import draftChip from "~/components/posts/draftChip";
 
 export default {
-  components: {
-    draftChip
-  },
   computed: {
     ...mapState(["posts"]),
     ...mapGetters(["setEyeCatch", "draftChip", "linkTo"]),
     categoryColor() {
-      return (category) => {
+      return category => {
         switch (category.fields.name) {
-          case 'RubyOnRails': return '#C73A31'
-          case 'Nuxt.js': return '#236244'
-          case 'コラム': return 'primary'
-          default: return 'grey darken-3'
+          case "Programming":
+            return "#C73A31";
+          case "Marketing":
+            return "#236244";
+          case "コラム":
+            return "primary";
+          default:
+            return "grey darken-3";
         }
-      }
+      };
     }
   },
   props: ["post"]
 };
-
 </script>
 
 <style>

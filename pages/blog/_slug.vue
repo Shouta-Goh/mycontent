@@ -4,21 +4,12 @@
     <v-row justify="center">
       <v-col cols="12" sm="8">
         <header class="article header">
-          <div class="foreground">
-            <div class="page-bar wrapper">
-              <a href="/" class="person-name">Back Home</a>
-              <Navigation></Navigation>
-            </div>
-          </div>
           <v-row>
             <v-col>
               <v-img
                 :src="setEyeCatch(post).url"
                 :alt="setEyeCatch(post).title"
                 :aspect-ratio="16/9"
-                width="700"
-                height="400"
-                class="mx-auto"
               ></v-img>
             </v-col>
           </v-row>
@@ -26,12 +17,6 @@
 
         <section class="body-container">
           <main class="wrapper">
-            <!--Category-->
-            <v-breadcrumbs :items="breadcrumbs">
-              <template #divider>
-                <v-icon>mdi-chevron-right</v-icon>
-              </template>
-            </v-breadcrumbs>
             <div class="headline">
               <time class="tiny">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
               <h1>{{ post.fields.title }}</h1>
@@ -43,15 +28,15 @@
           </main>
         </section>
       </v-col>
-      <v-col cols="12" sm="3">
-        <article-preview :post="post"></article-preview>
+      <v-col cols="12" sm="4">
+        <CategoryList></CategoryList>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import ArticlePreview from "~/components/article-preview.vue";
+import CategoryList from "~/components/category-list.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -70,17 +55,10 @@ export default {
     }
   },
   components: {
-    ArticlePreview
+    CategoryList
   },
   computed: {
     ...mapGetters(["setEyeCatch", 'linkTo']),
-    breadcrumbs() {
-      const category = this.post.fields.category;
-      return [
-        { text: "ホーム", to: "/" },
-        { text: category.fields.name, to: this.linkTo('categories', this.category) }
-      ];
-    },
     addBreads() {
       return [
         {

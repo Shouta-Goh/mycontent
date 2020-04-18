@@ -5,12 +5,17 @@ const client = createClient();
 
 export const state = () => ({
   posts: [],
-  categories: []
+  categories: [],
+  person: []
 })
 
 export const getters = {
   setEyeCatch: () => (post) => {
     if (!!post.fields.heroImage && !!post.fields.heroImage.fields) return { url: `https:${post.fields.heroImage.fields.file.url}`, title: post.fields.heroImage.fields.title }
+    else return { url: defaultEyeCatch, title: 'defaultImage' }
+  },
+  setPersonEyeCatch: () => (person) => {
+    if (!!person.fields.image && !!person.fields.image.fields) return { url: `https:${person.fields.image.fields.file.url}`, title: person.fields.image.fields.title }
     else return { url: defaultEyeCatch, title: 'defaultImage' }
   },
   draftChip: () => (post) => {
@@ -26,22 +31,20 @@ export const getters = {
       if (category.sys.id === catId) posts.push(state.posts[i])
     }
     return posts
-  }
+  },
 }
 
 export const mutations = {
   setPosts(state, payload) {
     state.posts = payload
   },
-
-  //setCategories(state, payload) {
-  //  state.categories = payload
-  //}
   setLinks(state, entries) {
     state.categories = []
+    state.person = []
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i]
       if (entry.sys.contentType.sys.id === 'category') state.categories.push(entry)
+      if (entry.sys.contentType.sys.id === 'person') state.person.push(entry)      
     }
     state.categories.sort((a, b) => a.fields.sort - b.fields.sort)
   }
@@ -53,28 +56,10 @@ export const actions = {
     await client.getEntries({
       content_type: process.env.CTF_BLOG_POST_TYPE_ID,
       order: '-fields.publishDate',
-      include: 1//追記
-      /*
-    }).then(res =>
+      include: 1
+    }).then((res) => {
+      commit('setLinks', res.includes.Entry)
       commit('setPosts', res.items)
-    ).catch(console.error)
-    */
-   // 変更・追記
-  }).then((res) => {
-    commit('setLinks', res.includes.Entry)
-    commit('setPosts', res.items)
-  }).catch(console.error)
+    }).catch(console.error)
   },
-
-  //catefories
-  /*
-  async getCategories({ commit }) {
-    await client.getEntries({
-      content_type: 'category',
-      order: 'fields.sort'
-    }).then(res =>
-      commit('setCategories', res.items)
-    ).catch(console.error)
-  }
-  */
 }
