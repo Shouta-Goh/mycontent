@@ -4,7 +4,7 @@
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" sm="9">
+        <v-col cols="12" md="9">
           <header class="article header">
             <v-row>
               <v-col>
@@ -30,7 +30,7 @@
             </main>
           </section>
         </v-col>
-        <v-col cols="12" sm="3">
+        <v-col cols="12" md="3">
           <CategoryList></CategoryList>
         </v-col>
       </v-row>

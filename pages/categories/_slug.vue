@@ -2,23 +2,23 @@
   <v-container>
     <breadcrumbs :add-items="addBreads" />
     <v-row>
-      <v-col cols="12" sm="9">
+      <v-col cols="12" md="9">
         <h1>{{ category.fields.name }}</h1>
 
         <div v-for="(post, i) in relatedPosts" :key="i">
           <nuxt-link :to="linkTo('blog', post)" class="link">
-            <v-card outlined v-ripple max-height="270">
+            <v-card outlined v-ripple height="150">
               <v-row no-gutters>
                 <v-col cols="5">
                   <v-img
                     class="thumbnail"
                     :src="setEyeCatch(post).url"
                     :alt="setEyeCatch(post).title"
-                    height="270"
+                    height="150"
                   ></v-img>
                 </v-col>
-                <v-col cols="7" class="card-relative">
-                  <v-card-title>{{ post.fields.title }}</v-card-title>
+                <v-col cols="7">
+                  <v-card-title class="card-titles">{{ post.fields.title }}</v-card-title>
                   <v-card-subtitle>
                     <time>
                       {{ ( new Date(post.fields.publishDate)).toDateString() }}
@@ -27,9 +27,6 @@
                       />
                     </time>
                   </v-card-subtitle>
-                  <v-card-text>{{ post.fields.description }}</v-card-text>
-
-                  <v-card-text class="card-bottom">
                     <template v-if="post.fields.tags">
                       <v-chip
                         v-for="(tag) in post.fields.tags"
@@ -42,7 +39,6 @@
                         class="ma-1 font-weight-bold"
                       >{{ tag.fields.name }}</v-chip>
                     </template>
-                  </v-card-text>
                 </v-col>
               </v-row>
             </v-card>
@@ -50,7 +46,7 @@
           <br />
         </div>
       </v-col>
-      <v-col cols="12" sm="3">
+      <v-col cols="12" md="3">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -108,16 +104,10 @@ export default {
 </script>
 
 <style>
-.card-relative {
-  position: relative;
+.card-titles {
+  font-size: 1.0em;
+  line-height: 1.1em;
 }
-
-.card-bottom {
-  height: 64px;
-  position: absolute;
-  bottom: 0px;
-}
-
 .link {
   text-decoration: none;
 }
