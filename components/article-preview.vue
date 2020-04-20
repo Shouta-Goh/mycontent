@@ -2,15 +2,8 @@
   <article>
     <v-hover v-slot:default="{ hover }">
       <nuxt-link :to="linkTo('blog', post)" class="link">
-        <v-card width="400" height="500" v-ripple :elevation="hover ? 12 : 2">
-          <v-img
-            class="thumbnail"
-            :src="setEyeCatch(post).url"
-            :alt="setEyeCatch(post).title"
-            :aspect-ratio="16/9"
-            max-height="250"
-            max-width="500"
-          >
+        <v-card width="360" height="430" v-ripple :elevation="hover ? 12 : 2">
+          <v-img :src="setEyeCatch(post).url" :alt="setEyeCatch(post).title" :aspect-ratio="16/9">
             <v-card-text>
               <v-chip
                 small
@@ -23,15 +16,13 @@
           </v-img>
 
           <v-card-title class="title">{{ post.fields.title }}</v-card-title>
-
-          <v-card-text>
-            {{ post.fields.description }}
-            <span :is="draftChip(post)" />
-          </v-card-text>
-
           <v-card-subtitle>
-            <time class="tiny date">{{ ( new Date(post.fields.publishDate)).toDateString() }}</time>
+            <time>
+              {{ ( new Date(post.fields.publishDate)).toDateString() }}
+              <span :is="draftChip(post)" />
+            </time>
           </v-card-subtitle>
+          <v-card-text>{{ post.fields.description }}</v-card-text>
         </v-card>
       </nuxt-link>
     </v-hover>
@@ -40,6 +31,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import draftChip from "~/components/posts/draftChip";
 
 export default {
   computed: {
@@ -60,49 +52,21 @@ export default {
       };
     }
   },
+  components: {
+    draftChip
+  },
   props: ["post"]
 };
 </script>
 
 <style>
-.thumbnail {
-  margin-bottom: 1em;
-}
-
-.date {
-}
-
 .link {
   text-decoration: none;
 }
 
 .title {
-  text-decoration: none;
   font-size: 22px;
   color: #373f49;
 }
 
-.tags {
-  padding: 1em 0;
-  margin-bottom: 2em;
-}
-
-.tag:link,
-.tag:visited {
-  color: #a0a0a0;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.33333rem 0.5rem;
-  line-height: 1;
-  border-radius: 2px;
-  border: 1px solid #a0a0a0;
-  margin-right: 0.5em;
-}
-
-.tag:active,
-.tag:hover,
-.tag:focus {
-  color: #606060;
-  border-color: #606060;
-}
 </style>

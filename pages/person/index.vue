@@ -4,7 +4,7 @@
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" sm="8">
+        <v-col cols="12" sm="9">
           <header class="article header">
             <v-row>
               <v-col>
@@ -12,9 +12,7 @@
                   class="thumbnail"
                   :src="setPersonEyeCatch(person[0]).url"
                   :alt="setPersonEyeCatch(person[0]).title"
-                  :aspect-ratio="1/1"
-                  max-height="300"
-                  width="400"
+                  :aspect-ratio="16/9"
                 ></v-img>
               </v-col>
             </v-row>
@@ -32,7 +30,7 @@
             </main>
           </section>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="3">
           <CategoryList></CategoryList>
         </v-col>
       </v-row>
@@ -67,7 +65,6 @@ export default {
 </script>
 
 <style>
-
 .table-of-contents {
         background: #f3f3f3;
         border: 1px solid #ccc;
@@ -85,6 +82,7 @@ export default {
 
 .headline h1 {
   font-size: 2em;
+  line-height: 1.1em;
 }
 
 .copy {

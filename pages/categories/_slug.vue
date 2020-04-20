@@ -1,30 +1,65 @@
 <template>
-  <div>
-    <v-container>
-      <breadcrumbs :add-items="addBreads" />
-      <h1>{{ category.fields.name }}</h1>
+  <v-container>
+    <breadcrumbs :add-items="addBreads" />
+    <v-row>
+      <v-col cols="12" sm="9">
+        <h1>{{ category.fields.name }}</h1>
 
-      <div v-for="(post, i) in relatedPosts" :key="i">
-        <v-img
-          class="thumbnail"
-          :src="setEyeCatch(post).url"
-          :alt="setEyeCatch(post).title"
-          :aspect-ratio="16/9"
-          max-height="200"
-          width="400"
-        ></v-img>
-        <nuxt-link :to="linkTo('blog',post)">{{ post.fields.title }}</nuxt-link>
-        <div v-for="(tags, i) in post.fields.category.fields.tags" :key="i">{{ tags.fields.name }}</div>
-        <br />ーーーーーーーーーーーー
-      </div>
-      <categoryList></categoryList>
-    </v-container>
-  </div>
+        <div v-for="(post, i) in relatedPosts" :key="i">
+          <nuxt-link :to="linkTo('blog', post)" class="link">
+            <v-card outlined v-ripple max-height="270">
+              <v-row no-gutters>
+                <v-col cols="5">
+                  <v-img
+                    class="thumbnail"
+                    :src="setEyeCatch(post).url"
+                    :alt="setEyeCatch(post).title"
+                    height="270"
+                  ></v-img>
+                </v-col>
+                <v-col cols="7" class="card-relative">
+                  <v-card-title>{{ post.fields.title }}</v-card-title>
+                  <v-card-subtitle>
+                    <time>
+                      {{ ( new Date(post.fields.publishDate)).toDateString() }}
+                      <span
+                        :is="draftChip(post)"
+                      />
+                    </time>
+                  </v-card-subtitle>
+                  <v-card-text>{{ post.fields.description }}</v-card-text>
+
+                  <v-card-text class="card-bottom">
+                    <template v-if="post.fields.tags">
+                      <v-chip
+                        v-for="(tag) in post.fields.tags"
+                        :key="tag.sys.id"
+                        color="primary"
+                        dark
+                        small
+                        label
+                        outlined
+                        class="ma-1 font-weight-bold"
+                      >{{ tag.fields.name }}</v-chip>
+                    </template>
+                  </v-card-text>
+                </v-col>
+              </v-row>
+            </v-card>
+          </nuxt-link>
+          <br />
+        </div>
+      </v-col>
+      <v-col cols="12" sm="3">
+        <CategoryList></CategoryList>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import categoryList from "~/components/category-list";
+import CategoryList from "~/components/category-list";
 
 export default {
   computed: {
@@ -67,7 +102,23 @@ export default {
     }
   },
   components: {
-    categoryList
+    CategoryList
   }
 };
 </script>
+
+<style>
+.card-relative {
+  position: relative;
+}
+
+.card-bottom {
+  height: 64px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.link {
+  text-decoration: none;
+}
+</style>

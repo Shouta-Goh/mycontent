@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
-      <v-col cols="12" sm="8">
+      <v-col cols="12" sm="9">
         <header class="article header">
           <v-row>
             <v-col>
@@ -28,7 +28,7 @@
           </main>
         </section>
       </v-col>
-      <v-col cols="12" sm="4">
+      <v-col cols="12" sm="3">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -73,7 +73,6 @@ export default {
 </script>
 
 <style>
-
 .table-of-contents {
         background: #f3f3f3;
         border: 1px solid #ccc;
@@ -86,7 +85,7 @@ export default {
 }
 
 .headline {
-  padding: 2em 0 0;
+  padding: 0.2em 0 0;
 }
 
 .headline .tiny {
@@ -95,6 +94,7 @@ export default {
 
 .headline h1 {
   font-size: 2em;
+  line-height: 1.1em;
 }
 
 .copy {

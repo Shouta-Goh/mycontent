@@ -3,32 +3,20 @@
     <breadcrumbs :add-items="addBreads" />
 
     <v-container>
-      <v-row justify="center">
-        <v-col cols="12" sm="10" md="8">
-          <v-card>
-            <v-card-title>
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-              />
-            </v-card-title>
-            
-            <v-data-table
-              :headers="headers"
-              :items="tableItems"
-              :search="search"
-            >
-              <template v-slot:item.fields.name="{ item }">
-                <v-icon size="18">mdi-tag-outline</v-icon>
-                <nuxt-link :to="linkTo('categories', item)">{{ item.fields.name }}</nuxt-link>
-              </template>
-            </v-data-table>
-          </v-card>
-        </v-col>
-      </v-row>
+      <ul style="list-style: none;">
+        <v-row justify="center">
+          <li v-for="(category,key) in categories" :key="key">
+            <v-col>
+              <v-card
+                width="350"
+                height="100%"
+                v-ripple
+                :elevation="hover ? 12 : 2"
+              >{{ category.fields.name }}</v-card>
+            </v-col>
+          </li>
+        </v-row>
+      </ul>
     </v-container>
   </div>
 </template>
@@ -60,14 +48,6 @@ export default {
           iconColor: "grey"
         }
       ];
-    },
-    tableItems() {
-      const categories = [];
-      for (let i = 0; i < this.categories.length; i++) {
-        const category = this.categories[i];
-        categories.push(category);
-      }
-      return categories;
     }
   }
 };

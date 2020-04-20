@@ -1,21 +1,27 @@
 <template>
   <div>
     <v-img v-bind:src="require('@/assets/images/programing.jpg')" height="300"></v-img>
-    <v-container fluid>
+    <v-container>
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
       </v-row>
       <ul style="list-style: none;">
         <v-row justify="center">
-          <li v-for="(post,key) in posts" :key="key">
+          <li v-for="(post,key) in posts.slice(0,6)" :key="key">
             <v-col>
               <article-preview :post="post"></article-preview>
               {{ post.fields.author.fields.img }}
             </v-col>
           </li>
         </v-row>
+        <v-row justify="center">
+          <v-btn class="ma-2" x-large tile outlined color="success" to="/categories" nuxt>
+            <v-icon left>mdi-pencil</v-icon>Go Page
+          </v-btn>
+        </v-row>
       </ul>
 
+      <v-divider class="divier"></v-divider>
       <v-row justify="center">
         <h1 class="main-title">自己紹介</h1>
       </v-row>
@@ -40,6 +46,7 @@
         </div>
       </v-row>
 
+      <v-divider class="divier"></v-divider>
       <v-row justify="center">
         <h1 class="main-title">なぜブログを作ったのか？</h1>
       </v-row>
@@ -83,7 +90,7 @@ export default {
   computed: {
     ...mapState(["posts", "person"]),
     ...mapGetters(["setPersonEyeCatch"])
-  },
+  }
 };
 </script>
 
@@ -92,7 +99,11 @@ export default {
   text-decoration: underline blue;
   font-size: 36px;
   color: #373f49;
-  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.divier {
+  margin-top: 50px;
   margin-bottom: 50px;
 }
 </style>
