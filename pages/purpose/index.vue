@@ -7,8 +7,8 @@
           <v-row>
             <v-col>
               <v-img
-                :src="setEyeCatch(personPosts[0]).url"
-                :alt="setEyeCatch(personPosts[0]).title"
+                :src="setEyeCatch(purposePosts[0]).url"
+                :alt="setEyeCatch(purposePosts[0]).title"
                 :aspect-ratio="16/9"
               ></v-img>
             </v-col>
@@ -18,12 +18,12 @@
         <section class="body-container">
           <main class="wrapper">
             <div class="headline">
-              <time class="tiny">{{ ( new Date(personPosts[0].fields.publishDate)).toDateString() }}</time>
-              <h1>{{ personPosts[0].fields.title }}</h1>
+              <time class="tiny">{{ ( new Date(purposePosts[0].fields.publishDate)).toDateString() }}</time>
+              <h1>{{ purposePosts[0].fields.title }}</h1>
             </div>
 
             <div class="copy">
-              <div v-html="$md.render(personPosts[0].fields.body)"></div>
+              <div v-html="$md.render(purposePosts[0].fields.body)"></div>
             </div>
           </main>
         </section>
@@ -44,20 +44,20 @@ export default {
     CategoryList
   },
   computed: {
-    ...mapGetters(["setEyeCatch", 'linkTo',"personPosts"]),
+    ...mapGetters(["setEyeCatch", 'linkTo',"purposePosts"]),
     addBreads() {
       return [
         {
           icon: "mdi-tag-outline",
-          text: "自己紹介",
-          to: "/person",
+          text: "なぜブログ作成したのか？",
+          to: "/purpose",
           disabled: true,
           iconColor: "grey"
         }
       ];
     },
-    personPosts() {
-      return this.$store.getters.personPosts();
+    purposePosts() {
+      return this.$store.getters.purposePosts();
     },
   },
   components: {
@@ -68,7 +68,8 @@ export default {
 
 <style>
 strong {
-  color: rgb(228, 64, 64);
+  text-decoration: underline red;
+  color: black;
 }
 
 em {
@@ -77,16 +78,7 @@ em {
 }
 
 box {
-  background: #fdff7d;
-}
-
-primary {
-  color: #1971FF;
-}
-
-ambition {
-  color: #FF0011;
-  font-weight: bold;
+  background: yellow;
 }
 
 h1 {

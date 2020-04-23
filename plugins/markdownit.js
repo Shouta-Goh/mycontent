@@ -5,6 +5,8 @@ import markdownItTableOfContents from "markdown-it-table-of-contents"
 export default ({ app }, inject) => {
 
   const md = new MarkdownIt({ //markdownitのオプション
+    injected: true,
+    breaks: true,
     html: true,
     linkify: true,
     typography: true,

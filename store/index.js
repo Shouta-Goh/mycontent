@@ -18,6 +18,10 @@ export const getters = {
     if (!!person.fields.image && !!person.fields.image.fields) return { url: `https:${person.fields.image.fields.file.url}`, title: person.fields.image.fields.title }
     else return { url: defaultEyeCatch, title: 'defaultImage' }
   },
+  setCategoriesEyeCatch: () => (categories) => {
+    if (!!categories.fields.image && !!categories.fields.image.fields) return { url: `https:${categories.fields.image.fields.file.url}`, title: categories.fields.image.fields.title }
+    else return { url: defaultEyeCatch, title: 'defaultImage' }
+  },
   draftChip: () => (post) => {
     if (!post.fields.publishDate) return 'draftChip'
   },
@@ -29,6 +33,20 @@ export const getters = {
     for (let i = 0; i < state.posts.length; i++) {
       const catId = state.posts[i].fields.category.sys.id
       if (category.sys.id === catId) posts.push(state.posts[i])
+    }
+    return posts
+  },
+  personPosts: state => () => {
+    const posts = []
+    for (let i = 0; i < state.posts.length; i++) {
+      if (state.posts[i].fields.slug === 'profile') posts.push(state.posts[i])
+    }
+    return posts
+  },
+  purposePosts: state => () => {
+    const posts = []
+    for (let i = 0; i < state.posts.length; i++) {
+      if (state.posts[i].fields.slug === 'purpose') posts.push(state.posts[i])
     }
     return posts
   },

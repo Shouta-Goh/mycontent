@@ -18,6 +18,14 @@
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/purpose" nuxt>
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Purpose</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -31,10 +39,7 @@
       <router-view />
     </v-content>
 
-    <v-footer
-      color="indigo"
-      app
-    >
+    <v-footer color="indigo" app>
       <span class="white--text">&copy; 2020 Shou</span>
     </v-footer>
   </v-app>
@@ -48,12 +53,11 @@ export default {
   data: () => ({
     drawer: null
   }),
-    mounted () {
+  mounted() {
     this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    })
-  }
+      this.$nuxt.$loading.start();
+      setTimeout(() => this.$nuxt.$loading.finish(), 500);
+    });
+  },
 };
 </script>

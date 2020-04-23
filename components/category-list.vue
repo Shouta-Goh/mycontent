@@ -28,7 +28,7 @@ export default {
       const categories = [];
       for (let i = 0; i < this.categories.length; i++) {
         const category = this.categories[i];
-        categories.push(category);
+        if (category.fields.slug !== 'introduction') categories.push(category);
       }
       return categories;
     }

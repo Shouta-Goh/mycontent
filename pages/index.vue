@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/programing.jpg')"  width="100%"></v-img>
+    <v-img v-bind:src="require('@/assets/images/programing.jpg')" width="100%"></v-img>
     <v-container>
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
@@ -8,10 +8,9 @@
 
       <ul>
         <v-row justify="center">
-          <li v-for="(post,key) in posts.slice(0,6)" :key="key">
+          <li v-for="(post,key) in PostsData.slice(0,6)" :key="key">
             <v-col>
               <article-preview :post="post"></article-preview>
-              {{ post.fields.author.fields.img }}
             </v-col>
           </li>
         </v-row>
@@ -40,7 +39,7 @@
           <article class="text-center text-md-left">
             <h2>{{ person[0].fields.title }}</h2>
             <div v-html="$md.render(person[0].fields.shortBio)"></div>
-            <v-btn class="ma-2" tile outlined color="success" to="/person">
+            <v-btn class="ma-2" tile outlined color="success" to="/person" nuxt>
               <v-icon left>mdi-pencil</v-icon>Go Page
             </v-btn>
           </article>
@@ -68,7 +67,7 @@
               <br />人生を変えるキッカケを
             </h2>
             <div v-html="$md.render(person[0].fields.shortBio)"></div>
-            <v-btn class="ma-2" tile outlined color="success">
+            <v-btn class="ma-2" tile outlined color="success" to="/purpose" nuxt>
               <v-icon left>mdi-pencil</v-icon>Go Page
             </v-btn>
           </article>
@@ -90,7 +89,19 @@ export default {
   },
   computed: {
     ...mapState(["posts", "person"]),
-    ...mapGetters(["setPersonEyeCatch"])
+    ...mapGetters(["setPersonEyeCatch"]),
+    PostsData() {
+      const posts = [];
+      for (let i = 0; i < this.posts.length; i++) {
+        if (
+          this.posts[i].fields.slug !== "profile" &&
+          this.posts[i].fields.slug !== "purpose"
+        ) {
+          posts.push(this.posts[i]);
+        }
+      }
+      return posts;
+    }
   }
 };
 </script>

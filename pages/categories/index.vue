@@ -1,24 +1,22 @@
 <template>
-  <div>
+  <v-container>
     <breadcrumbs :add-items="addBreads" />
 
-    <v-container>
-      <ul style="list-style: none;">
-        <v-row justify="center">
-          <li v-for="(category,key) in categories" :key="key">
-            <v-col>
-              <v-card
-                width="350"
-                height="100%"
-                v-ripple
-                :elevation="hover ? 12 : 2"
-              >{{ category.fields.name }}</v-card>
-            </v-col>
-          </li>
-        </v-row>
-      </ul>
-    </v-container>
-  </div>
+    <v-list-item-group color="indigo" class="mt-5">
+      <v-row no-gutters>
+        <v-list-item v-for="(item, i) in categoryItems" :key="i" :to="linkTo('categories', item)">
+          <v-col>
+            <v-img
+              :src="setCategoriesEyeCatch(item).url"
+              :alt="setCategoriesEyeCatch(item).title"
+              :aspect-ratio="16/9"
+            ></v-img>
+          </v-col>
+          <v-col>{{ item.fields.definition }}</v-col>
+        </v-list-item>
+      </v-row>
+    </v-list-item-group>
+  </v-container>
 </template>
 
 <script>
@@ -37,7 +35,7 @@ export default {
   }),
   computed: {
     ...mapState(["categories"]),
-    ...mapGetters(["linkTo"]),
+    ...mapGetters(["linkTo", "setCategoriesEyeCatch"]),
     addBreads() {
       return [
         {
@@ -48,6 +46,14 @@ export default {
           iconColor: "grey"
         }
       ];
+    },
+    categoryItems() {
+      const categories = [];
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i].fields.slug !== "introduction")
+          categories.push(this.categories[i]);
+      }
+      return categories;
     }
   }
 };
