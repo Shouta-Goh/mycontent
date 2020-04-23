@@ -68,7 +68,8 @@ export default {
 
 <style>
 strong {
-  color: rgb(228, 64, 64);
+  color: #FF0011;
+  font-weight: bold;
 }
 
 em {
@@ -87,14 +88,6 @@ primary {
 ambition {
   color: #FF0011;
   font-weight: bold;
-}
-
-h1 {
-  font-size: 1.6em;
-}
-
-p {
-  font-size: 1.3em;
 }
 
 .table-of-contents {
@@ -137,5 +130,6 @@ p {
 
 .copy li {
   margin: 0;
+  font-size: 1.0em;
 }
 </style>
