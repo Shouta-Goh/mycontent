@@ -2,7 +2,7 @@
   <v-container>
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
-      <v-col cols="12" md="9">
+      <v-col cols="12">
         <header class="article header">
           <v-row>
             <v-col>
@@ -28,7 +28,7 @@
           </main>
         </section>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -85,20 +85,17 @@ primary {
   color: #1971FF;
 }
 
-ambition {
-  color: #FF0011;
-  font-weight: bold;
-}
-
 .table-of-contents {
   background: #f3f3f3;
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
+  margin:auto;
 }
 
 .headline {
   padding: 2em 0 0;
+  text-align: center;
 }
 
 .headline .tiny {
@@ -112,6 +109,7 @@ ambition {
 
 .copy {
   padding-bottom: 7em;
+  text-align: center;
 }
 
 .copy *:not(div) {
@@ -120,6 +118,16 @@ ambition {
 
 .copy h3 {
   font-size: 1.35em;
+}
+
+.copy p {
+  font-size: 1.0em;
+}
+
+.copy img {
+  width:100%;
+  max-width: 600px;
+  max-height: 400px;
 }
 
 .copy ul {
