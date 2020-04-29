@@ -39,7 +39,7 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
-  loading: '~/components/loading.vue',
+  loading: true,
   /*
    ** Build configuration
    */

@@ -47,17 +47,8 @@
 
 <script>
 export default {
-  props: {
-    source: String
-  },
   data: () => ({
     drawer: null
-  }),
-  mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start();
-      setTimeout(() => this.$nuxt.$loading.finish(), 500);
-    });
-  },
+  })
 };
 </script>

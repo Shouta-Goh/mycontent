@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/programing.jpg')" width="100%"></v-img>
+    <v-img v-bind:src="require('@/assets/images/programing.jpg')" width="100%" :aspect-ratio="6/1"></v-img>
     <v-container>
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
@@ -102,7 +102,7 @@ export default {
       }
       return posts;
     }
-  }
+  },
 };
 </script>
 

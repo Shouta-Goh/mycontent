@@ -2,7 +2,7 @@
   <article>
     <v-hover v-slot:default="{ hover }">
       <nuxt-link :to="linkTo('blog', post)" class="link">
-        <v-card width="300" height="400" v-ripple :elevation="hover ? 12 : 2">
+        <v-card width="300" height="400" v-ripple :elevation="hover ? 12 : 2" :loading="loading">
           <v-img :src="setEyeCatch(post).url" :alt="setEyeCatch(post).title" :aspect-ratio="16/9">
             <v-card-text>
               <v-chip
@@ -14,7 +14,6 @@
               >{{ post.fields.category.fields.name }}</v-chip>
             </v-card-text>
           </v-img>
-
           <v-card-title class="title">{{ post.fields.title }}</v-card-title>
           <v-card-subtitle>
             <time>
@@ -34,6 +33,15 @@ import { mapState, mapGetters } from "vuex";
 import draftChip from "~/components/posts/draftChip";
 
 export default {
+  data: () => ({
+    loading: false
+  }),
+  created() {
+    this.$nextTick(() => {
+      this.loading = true;
+      setTimeout(() => (this.loading = false), 1000);
+    });
+  },
   computed: {
     ...mapState(["posts"]),
     ...mapGetters(["setEyeCatch", "draftChip", "linkTo"]),

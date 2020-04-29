@@ -1,16 +1,19 @@
 <template>
   <v-container>
     <breadcrumbs :add-items="addBreads" />
-    <v-row justify="center">
+    <v-row justify="center" class="text-center">
       <v-col cols="12">
         <header class="article header">
           <v-row>
             <v-col>
-              <v-img
-                :src="setEyeCatch(personPosts[0]).url"
-                :alt="setEyeCatch(personPosts[0]).title"
-                :aspect-ratio="16/9"
-              ></v-img>
+              <v-avatar size="300">
+                <v-img
+                  :src="setEyeCatch(personPosts[0]).url"
+                  :alt="setEyeCatch(personPosts[0]).title"
+                  max-height="400"
+                  width="400"
+                ></v-img>
+              </v-avatar>
             </v-col>
           </v-row>
         </header>
@@ -44,7 +47,7 @@ export default {
     CategoryList
   },
   computed: {
-    ...mapGetters(["setEyeCatch", 'linkTo',"personPosts"]),
+    ...mapGetters(["setEyeCatch", "linkTo", "personPosts"]),
     addBreads() {
       return [
         {
@@ -58,7 +61,7 @@ export default {
     },
     personPosts() {
       return this.$store.getters.personPosts();
-    },
+    }
   },
   components: {
     CategoryList
@@ -68,7 +71,7 @@ export default {
 
 <style>
 strong {
-  color: #FF0011;
+  color: #ff0011;
   font-weight: bold;
 }
 
@@ -82,7 +85,7 @@ box {
 }
 
 primary {
-  color: #1971FF;
+  color: #1971ff;
 }
 
 .table-of-contents {
@@ -90,12 +93,23 @@ primary {
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
-  margin:auto;
+  margin: auto;
+}
+
+.table-of-contents ul {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height:250px;
+  width:400px;
+}
+
+.table-of-contents li {
+  list-style: none;
 }
 
 .headline {
   padding: 2em 0 0;
-  text-align: center;
 }
 
 .headline .tiny {
@@ -109,7 +123,6 @@ primary {
 
 .copy {
   padding-bottom: 7em;
-  text-align: center;
 }
 
 .copy *:not(div) {
@@ -121,11 +134,11 @@ primary {
 }
 
 .copy p {
-  font-size: 1.0em;
+  font-size: 1em;
 }
 
 .copy img {
-  width:100%;
+  width: 100%;
   max-width: 600px;
   max-height: 400px;
 }
@@ -133,11 +146,11 @@ primary {
 .copy ul {
   margin: 0;
   padding-left: 1em;
-  list-style: disc;
 }
 
 .copy li {
   margin: 0;
-  font-size: 1.0em;
+  font-size: 1em;
+  list-style: none;
 }
 </style>

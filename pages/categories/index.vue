@@ -10,6 +10,7 @@
               :src="setCategoriesEyeCatch(item).url"
               :alt="setCategoriesEyeCatch(item).title"
               :aspect-ratio="16/9"
+              :loading="loading"
             ></v-img>
           </v-col>
           <v-col>{{ item.fields.definition }}</v-col>
