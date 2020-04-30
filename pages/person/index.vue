@@ -14,15 +14,16 @@
                   class="thumnail"
                 ></v-img>
               </v-avatar>
-                <v-card class="intro">
-                  <v-card-title>Shou</v-card-title>
-                  <v-card-text>初めまして！ Shouといいます
-                    <br>今は現役SEとして会社に勤めながら
-                    <br><span style="color:red;">自分らしい人生</span>のために
-                    <br>フリーランスを目指しています。
-                  </v-card-text>
-
-                </v-card>
+              <v-card class="intro">
+                <v-card-title>Shou</v-card-title>
+                <v-card-text>
+                  初めまして！ Shouといいます
+                  <br />今は現役SEとして会社に勤めながら
+                  <br />
+                  <span style="color:red;">自分らしい人生</span>のために
+                  <br />フリーランスを目指しています。
+                </v-card-text>
+              </v-card>
             </v-col>
           </v-row>
         </header>
@@ -34,9 +35,12 @@
               <h1>{{ personPosts[0].fields.title }}</h1>
             </div>
 
-            <div class="copy">
+            <div class="copies">
               <div v-html="$md.render(personPosts[0].fields.body)"></div>
             </div>
+            <v-btn class="ma-2" tile color="success" href="https://lin.ee/xbOIFl8" >
+              <v-icon left>mdi-pencil</v-icon>LINE 公式アカウントへ
+            </v-btn>
           </main>
         </section>
       </v-col>
@@ -105,10 +109,10 @@ primary {
 }
 
 .table-of-contents ul {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height:250px;
+  height: 250px;
 }
 
 .table-of-contents li {
@@ -128,66 +132,62 @@ primary {
   line-height: 1.1em;
 }
 
-.copy {
-  padding-bottom: 7em;
-}
-
-.copy *:not(div) {
+.copies *:not(div) {
   margin: 2em 0 1em;
 }
 
-.copy h3 {
+.copies h3 {
   font-size: 1.35em;
 }
 
-.copy p {
+.copies p {
   font-size: 1em;
 }
 
-.copy img {
+.copies img {
   width: 100%;
   max-width: 600px;
   max-height: 400px;
 }
 
-.copy ul {
+.copies ul {
   margin: 0;
   padding-left: 1em;
 }
 
-.copy li {
+.copies li {
   margin: 0;
   font-size: 1em;
   list-style: none;
 }
 
 .area {
-        position: relative;
+  position: relative;
 }
 
-.thumnail{
-  position:absolute;
+.thumnail {
+  position: absolute;
 }
 
 .intro {
-         position: absolute;
-         top: 50%;
-         left: 40%;
-        background: rgb(191, 214, 223);
-        opacity:0.9;
-        width:50%;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  background: rgb(191, 214, 223);
+  opacity: 0.9;
+  width: 50%;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   .area {
-  position:static;
-  text-align:center;
-  } 
-  .intro { 
-  position:static;
-  margin:auto;
-  width:100%;
-  text-align:left;
+    position: static;
+    text-align: center;
+  }
+  .intro {
+    position: static;
+    margin: auto;
+    width: 100%;
+    text-align: left;
   }
 }
 </style>
