@@ -1,19 +1,28 @@
 <template>
   <v-container>
     <breadcrumbs :add-items="addBreads" />
-    <v-row justify="center" class="text-center">
-      <v-col cols="12">
+    <v-row justify="center">
+      <v-col cols="12" md="9">
         <header class="article header">
           <v-row>
-            <v-col>
+            <v-col class="area" offset-sm="2">
               <v-avatar size="300">
                 <v-img
                   :src="setEyeCatch(personPosts[0]).url"
                   :alt="setEyeCatch(personPosts[0]).title"
-                  max-height="400"
-                  width="400"
+                  max-height="300"
+                  class="thumnail"
                 ></v-img>
               </v-avatar>
+                <v-card class="intro">
+                  <v-card-title>Shou</v-card-title>
+                  <v-card-text>初めまして！ Shouといいます
+                    <br>今は現役SEとして会社に勤めながら
+                    <br><span style="color:red;">自分らしい人生</span>のために
+                    <br>フリーランスを目指しています。
+                  </v-card-text>
+
+                </v-card>
             </v-col>
           </v-row>
         </header>
@@ -31,7 +40,7 @@
           </main>
         </section>
       </v-col>
-      <v-col cols="12">
+      <v-col cols="12" md="3">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -93,7 +102,6 @@ primary {
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
-  margin: auto;
 }
 
 .table-of-contents ul {
@@ -101,7 +109,6 @@ primary {
   flex-direction: column;
   justify-content: space-around;
   height:250px;
-  width:400px;
 }
 
 .table-of-contents li {
@@ -152,5 +159,35 @@ primary {
   margin: 0;
   font-size: 1em;
   list-style: none;
+}
+
+.area {
+        position: relative;
+}
+
+.thumnail{
+  position:absolute;
+}
+
+.intro {
+         position: absolute;
+         top: 50%;
+         left: 40%;
+        background: rgb(191, 214, 223);
+        opacity:0.9;
+        width:50%;
+}
+
+@media screen and (max-width:600px) {
+  .area {
+  position:static;
+  text-align:center;
+  } 
+  .intro { 
+  position:static;
+  margin:auto;
+  width:100%;
+  text-align:left;
+  }
 }
 </style>

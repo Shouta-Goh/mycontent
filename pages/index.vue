@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/programing.jpg')" width="100%" :aspect-ratio="6/1"></v-img>
+    <v-img v-bind:src="require('@/assets/images/summer.jpg')" width="100%" :aspect-ratio="6/1"></v-img>
     <v-container>
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
@@ -27,9 +27,9 @@
       </v-row>
       <v-row justify="center">
         <div class="d-flex flex-column flex-md-row">
-          <v-avatar class="mx-auto mr-md-12" size="300">
+          <v-avatar tile class="mx-auto mr-md-12" size="300">
             <v-img
-              class="thumbnail mb-12"
+              class="mb-12"
               :src="setPersonEyeCatch(person[0]).url"
               :alt="setPersonEyeCatch(person[0]).title"
               max-height="400"
@@ -55,8 +55,7 @@
           <v-avatar tile class="mx-auto mr-md-12" size="300">
             <v-img
               class="thumbnail mb-12"
-              :src="setPersonEyeCatch(person[0]).url"
-              :alt="setPersonEyeCatch(person[0]).title"
+              v-bind:src="require('@/assets/images/pc.jpg')"
               max-height="400"
               width="400"
             ></v-img>
@@ -66,7 +65,6 @@
               自分と同じ悩みを抱えた人へ、
               <br />人生を変えるキッカケを
             </h2>
-            <div v-html="$md.render(person[0].fields.shortBio)"></div>
             <v-btn class="ma-2" tile outlined color="success" to="/purpose" nuxt>
               <v-icon left>mdi-pencil</v-icon>Go Page
             </v-btn>
