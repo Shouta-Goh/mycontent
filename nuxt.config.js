@@ -80,18 +80,21 @@ module.exports = {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
+    ['@nuxtjs/google-analytics',{
+      id: 'UA-159302469-1'
+    }]
   ],
 
   manifest: {
-    name: 'nuxt-start',
+    name: 'Shou_Blog_Site',
     lang: 'ja',
-    short_name: 'nuxt',
-    title: 'nuxt-startです',
-    'og:title': 'nuxt-startです',
-    description: 'nuxt-startです',
-    'og:description': 'nuxt-startです',
-    theme_color: '#ffffff',
-    background_color: '#ffffff'
+    short_name: 'Shou_blog',
+    title: 'Shou_Blog',
+    'og:title': 'Shou_Blog',
+    description: 'プログラミングのノウハウを紹介するブログです',
+    'og:description': 'プログラミングのノウハウを紹介するブログです',
+    background_color: '#ffffff',
+    display: 'standalone',
   },
   workbox: {
     dev: true, //開発環境でもPWA
