@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
       <v-col cols="12" md="9">

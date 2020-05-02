@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
       <v-col cols="12" md="9">
@@ -38,7 +38,7 @@
             <div class="copies">
               <div v-html="$md.render(personPosts[0].fields.body)"></div>
             </div>
-            <v-btn class="ma-2" tile color="success" href="https://lin.ee/xbOIFl8" >
+            <v-btn class="ma-2" tile color="success" href="https://lin.ee/xbOIFl8">
               <v-icon left>mdi-pencil</v-icon>LINE 公式アカウントへ
             </v-btn>
           </main>
@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 strong {
   color: #ff0011;
   font-weight: bold;
@@ -106,59 +106,53 @@ primary {
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
-}
-
-.table-of-contents ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 250px;
-}
-
-.table-of-contents li {
-  list-style: none;
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 250px;
+    li {
+      list-style: none;
+    }
+  }
 }
 
 .headline {
   padding: 2em 0 0;
-}
-
-.headline .tiny {
-  font-size: 0.5em;
-}
-
-.headline h1 {
-  font-size: 2em;
-  line-height: 1.1em;
+  .tiny {
+    font-size: 0.5em;
+  }
+  h1 {
+    font-size: 2em;
+    line-height: 1.1em;
+  }
 }
 
 .copies *:not(div) {
   margin: 2em 0 1em;
 }
 
-.copies h3 {
-  font-size: 1.35em;
-}
-
-.copies p {
-  font-size: 1em;
-}
-
-.copies img {
-  width: 100%;
-  max-width: 600px;
-  max-height: 400px;
-}
-
-.copies ul {
-  margin: 0;
-  padding-left: 1em;
-}
-
-.copies li {
-  margin: 0;
-  font-size: 1em;
-  list-style: none;
+.copies {
+  h3 {
+    font-size: 1.35em;
+  }
+  p {
+    font-size: 1em;
+  }
+  img {
+    width: 100%;
+    max-width: 600px;
+    max-height: 400px;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1em;
+    li {
+      margin: 0;
+      font-size: 1em;
+      list-style: none;
+    }
+  }
 }
 
 .area {

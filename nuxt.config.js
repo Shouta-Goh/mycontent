@@ -39,7 +39,7 @@ module.exports = {
   /*
    ** Customize the progress bar color
    */
-  loading: true,
+  loading: false,
   /*
    ** Build configuration
    */
@@ -74,7 +74,8 @@ module.exports = {
 
   plugins: [
     'plugins/components',
-    'plugins/markdownit'
+    'plugins/markdownit',
+    'plugins/scroll',
   ],
   
   modules: [
@@ -93,11 +94,8 @@ module.exports = {
     'og:title': 'Shou_Blog',
     description: 'プログラミングのノウハウを紹介するブログです',
     'og:description': 'プログラミングのノウハウを紹介するブログです',
-    background_color: '#ffffff',
+    background_color: '#3F51B5',
     display: 'standalone',
-  },
-  workbox: {
-    dev: true, //開発環境でもPWA
   },
   
   generate: {

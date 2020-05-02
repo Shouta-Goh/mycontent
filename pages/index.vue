@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-img v-bind:src="require('@/assets/images/summer.jpg')" width="100%" :aspect-ratio="6/1"></v-img>
-    <v-container>
+    <v-container class="grey lighten-5">
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
       </v-row>
@@ -15,9 +15,28 @@
           </li>
         </v-row>
         <v-row justify="center">
-          <v-btn class="ma-2" x-large tile outlined color="success" to="/categories" nuxt>
+          <v-btn
+            class="ma-2"
+            x-large
+            tile
+            outlined
+            color="success"
+            to="/categories"
+            nuxt
+            :disabled="dialog"
+            :loading="dialog"
+            @click="dialog = true"
+          >
             <v-icon left>mdi-pencil</v-icon>Go Page
           </v-btn>
+          <v-dialog v-model="dialog" hide-overlay persistent width="300">
+            <v-card color="primary" dark>
+              <v-card-text>
+                Please stand by
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </v-row>
       </ul>
 
@@ -26,7 +45,7 @@
         <h1 class="main-title">自己紹介</h1>
       </v-row>
       <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row">
+        <div class="d-flex flex-column flex-md-row box" v-scroll="handleScroll">
           <v-avatar tile class="mx-auto mr-md-12" size="300">
             <v-img
               class="mb-12"
@@ -51,7 +70,7 @@
         <h1 class="main-title">なぜブログを作ったのか？</h1>
       </v-row>
       <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row">
+        <div class="d-flex flex-column flex-md-row box" v-scroll="handleScroll">
           <v-avatar tile class="mx-auto mr-md-12" size="300">
             <v-img
               class="thumbnail mb-12"
@@ -81,6 +100,19 @@ import categoryList from "~/components/category-list";
 import { mapState, mapGetters } from "vuex";
 
 export default {
+  data () {
+      return {
+        dialog: false,
+      }
+    },
+
+    watch: {
+      dialog (val) {
+        if (!val) return
+
+        setTimeout(() => (this.dialog = false), 4000)
+      },
+    },
   components: {
     ArticlePreview,
     categoryList
@@ -101,10 +133,22 @@ export default {
       return posts;
     }
   },
+  methods: {
+    handleScroll: function(evt, el) {
+      console.log(window.scrollY);
+      if (window.scrollY > 50) {
+        el.setAttribute(
+          "style",
+          "opacity: 1; transform: translate3d(-50px, 0, 0)"
+        );
+      }
+      return window.scrollY > 100;
+    }
+  }
 };
 </script>
 
-<style>
+<style lang="scss">
 .main-title {
   text-decoration: underline blue;
   font-size: 36px;
@@ -122,4 +166,8 @@ ul {
   margin-bottom: 50px;
 }
 
+.box {
+  opacity: 0;
+  transition: 1.5s all cubic-bezier(0.77, 0.2, 0.05, 1);
+}
 </style>

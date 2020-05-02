@@ -1,19 +1,19 @@
 <template>
   <div>
     <DefLayout>
-    <nuxt />
+      <nuxt />
     </DefLayout>
   </div>
 </template>
 
 <script>
-  import DefLayout from '~/components/DefLayout.vue'
+import DefLayout from "~/components/DefLayout.vue";
 
-  export default {
-    components: {
-      DefLayout
-    }
+export default {
+  components: {
+    DefLayout
   }
+};
 </script>
 
 <style>

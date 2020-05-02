@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
       <v-col cols="12" md="9">
@@ -46,10 +46,10 @@ export default {
       (await store.state.posts.find(post => post.fields.slug === params.slug));
 
     if (post) {
-      return { 
+      return {
         post,
         category: post.fields.category
-        }
+      };
     } else {
       return error({ statusCode: 400 });
     }
@@ -58,26 +58,26 @@ export default {
     CategoryList
   },
   computed: {
-    ...mapGetters(["setEyeCatch", 'linkTo']),
+    ...mapGetters(["setEyeCatch", "linkTo"]),
     addBreads() {
       return [
         {
-          icon: 'mdi-folder-outline',
+          icon: "mdi-folder-outline",
           text: this.category.fields.name,
-          to: this.linkTo('categories', this.category)
+          to: this.linkTo("categories", this.category)
         }
-      ]
+      ];
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 .table-of-contents {
-        background: #f3f3f3;
-        border: 1px solid #ccc;
-        padding: 5px 10px;
-        width: fit-content;
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  width: fit-content;
 }
 
 .foreground .page-bar {
@@ -86,36 +86,31 @@ export default {
 
 .headline {
   padding: 0.2em 0 0;
-}
-
-.headline .tiny {
-  font-size: 0.5em;
-}
-
-.headline h1 {
-  font-size: 2em;
-  line-height: 1.1em;
-}
-
-.copy {
-  padding-bottom: 7em;
+  .tiny {
+    font-size: 0.5em;
+  }
+  h1 {
+    font-size: 2em;
+    line-height: 1.1em;
+  }
 }
 
 .copy *:not(div) {
   margin: 2em 0 1em;
 }
 
-.copy h3 {
-  font-size: 1.35em;
-}
-
-.copy ul {
-  margin: 0;
-  padding-left: 1em;
-  list-style: disc;
-}
-
-.copy li {
-  margin: 0;
+.copy {
+  padding-bottom: 7em;
+  h3 {
+    font-size: 1.35em;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1em;
+    list-style: disc;
+    li {
+      margin: 0;
+    }
+  }
 }
 </style>

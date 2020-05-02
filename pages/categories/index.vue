@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
 
     <v-list-item-group color="indigo" class="mt-5">
@@ -10,7 +10,6 @@
               :src="setCategoriesEyeCatch(item).url"
               :alt="setCategoriesEyeCatch(item).title"
               :aspect-ratio="16/9"
-              :loading="loading"
             ></v-img>
           </v-col>
           <v-col>{{ item.fields.definition }}</v-col>
@@ -32,7 +31,7 @@ export default {
         align: "left",
         value: "fields.name" //category.fields.name
       }
-    ]
+    ],
   }),
   computed: {
     ...mapState(["categories"]),
