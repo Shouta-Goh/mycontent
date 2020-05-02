@@ -10,7 +10,16 @@
         <v-row justify="center">
           <li v-for="(post,key) in PostsData.slice(0,6)" :key="key">
             <v-col>
-              <article-preview :post="post"></article-preview>
+              <v-lazy
+                v-model="isActive"
+                :options="{
+                 threshold: .5
+                }"
+                min-height="200"
+                transition="slide-x-transition"
+              >
+                <article-preview :post="post"></article-preview>
+              </v-lazy>
             </v-col>
           </li>
         </v-row>
@@ -45,20 +54,39 @@
         <h1 class="main-title">自己紹介</h1>
       </v-row>
       <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row box" v-scroll="handleScroll">
-          <v-avatar tile class="mx-auto mr-md-12" size="300">
-            <v-img
-              class="mb-12"
-              :src="setPersonEyeCatch(person[0]).url"
-              :alt="setPersonEyeCatch(person[0]).title"
-              max-height="400"
-              width="400"
-            ></v-img>
-          </v-avatar>
+        <div class="d-flex flex-column flex-md-row">
+          <v-lazy
+            v-model="isActive"
+            :options="{
+              threshold: .5
+            }"
+            min-height="200"
+            transition="slide-x-transition"
+          >
+            <v-avatar tile class="mx-auto mr-md-12" size="300">
+              <v-img
+                class="mb-12"
+                :src="setPersonEyeCatch(person[0]).url"
+                :alt="setPersonEyeCatch(person[0]).title"
+                max-height="400"
+                width="400"
+              ></v-img>
+            </v-avatar>
+          </v-lazy>
           <article class="text-center text-md-left">
             <h2>{{ person[0].fields.title }}</h2>
             <div v-html="$md.render(person[0].fields.shortBio)"></div>
-            <v-btn class="ma-2" tile outlined color="success" to="/person" nuxt>
+            <v-btn
+              class="ma-2"
+              tile
+              outlined
+              color="success"
+              to="/person"
+              nuxt
+              :disabled="dialog"
+              :loading="dialog"
+              @click="dialog = true"
+            >
               <v-icon left>mdi-pencil</v-icon>Go Page
             </v-btn>
           </article>
@@ -70,15 +98,24 @@
         <h1 class="main-title">なぜブログを作ったのか？</h1>
       </v-row>
       <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row box" v-scroll="handleScroll">
-          <v-avatar tile class="mx-auto mr-md-12" size="300">
-            <v-img
-              class="thumbnail mb-12"
-              v-bind:src="require('@/assets/images/pc.jpg')"
-              max-height="400"
-              width="400"
-            ></v-img>
-          </v-avatar>
+        <div class="d-flex flex-column flex-md-row">
+          <v-lazy
+            v-model="isActive"
+            :options="{
+          threshold: 0.5
+        }"
+            min-height="200"
+            transition="slide-x-transition"
+          >
+            <v-avatar tile class="mx-auto mr-md-12" size="300">
+              <v-img
+                class="thumbnail mb-12"
+                v-bind:src="require('@/assets/images/pc.jpg')"
+                max-height="400"
+                width="400"
+              ></v-img>
+            </v-avatar>
+          </v-lazy>
           <article class="text-center text-md-left">
             <h2>
               自分と同じ悩みを抱えた人へ、
@@ -100,19 +137,20 @@ import categoryList from "~/components/category-list";
 import { mapState, mapGetters } from "vuex";
 
 export default {
-  data () {
-      return {
-        dialog: false,
-      }
-    },
+  data() {
+    return {
+      dialog: false,
+      isActive: false
+    };
+  },
 
-    watch: {
-      dialog (val) {
-        if (!val) return
+  watch: {
+    dialog(val) {
+      if (!val) return;
 
-        setTimeout(() => (this.dialog = false), 4000)
-      },
-    },
+      setTimeout(() => (this.dialog = false), 4000);
+    }
+  },
   components: {
     ArticlePreview,
     categoryList
@@ -131,18 +169,6 @@ export default {
         }
       }
       return posts;
-    }
-  },
-  methods: {
-    handleScroll: function(evt, el) {
-      console.log(window.scrollY);
-      if (window.scrollY > 50) {
-        el.setAttribute(
-          "style",
-          "opacity: 1; transform: translate3d(-50px, 0, 0)"
-        );
-      }
-      return window.scrollY > 100;
     }
   }
 };
@@ -164,10 +190,5 @@ ul {
 .divier {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-.box {
-  opacity: 0;
-  transition: 1.5s all cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 </style>

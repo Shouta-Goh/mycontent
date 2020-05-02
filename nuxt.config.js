@@ -75,7 +75,6 @@ module.exports = {
   plugins: [
     'plugins/components',
     'plugins/markdownit',
-    'plugins/scroll',
   ],
   
   modules: [
