@@ -48,84 +48,79 @@
           </v-dialog>
         </v-row>
       </ul>
-
       <v-divider class="divier"></v-divider>
       <v-row justify="center">
         <h1 class="main-title">自己紹介</h1>
       </v-row>
-      <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row">
-          <v-lazy
-            v-model="isActive"
-            :options="{
-              threshold: .5
-            }"
-            min-height="200"
-            transition="slide-x-transition"
-          >
-            <v-avatar tile class="mx-auto mr-md-12" size="300">
-              <v-img
-                class="mb-12"
-                :src="setPersonEyeCatch(person[0]).url"
-                :alt="setPersonEyeCatch(person[0]).title"
-                max-height="400"
-                width="400"
-              ></v-img>
-            </v-avatar>
-          </v-lazy>
-          <article class="text-center text-md-left">
-            <h2>{{ person[0].fields.title }}</h2>
-            <div v-html="$md.render(person[0].fields.shortBio)"></div>
-            <v-btn
-              class="ma-2"
-              tile
-              outlined
-              color="success"
-              to="/person"
-              nuxt
-              :disabled="dialog"
-              :loading="dialog"
-              @click="dialog = true"
-            >
-              <v-icon left>mdi-pencil</v-icon>Go Page
-            </v-btn>
-          </article>
-        </div>
+      <v-row>
+        <v-col offset-sm="2" class="area">
+          <v-avatar class="mx-auto" size="350">
+            <v-img
+              :src="setPersonEyeCatch(person[0]).url"
+              :alt="setPersonEyeCatch(person[0]).title"
+              max-height="350"
+              id="first"
+            ></v-img>
+          </v-avatar>
+          <v-card class="intro" max-height="330">
+            <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
+            <v-card-text class="text--primary">
+              <div v-html="$md.render(person[0].fields.shortBio)"></div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                class="ma-2"
+                tile
+                outlined
+                color="success"
+                to="/person"
+                nuxt
+                :disabled="dialog"
+                :loading="dialog"
+                @click="dialog = true"
+              >
+                <v-icon left>mdi-pencil</v-icon>Go Page
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
       </v-row>
 
-      <v-divider class="divier"></v-divider>
       <v-row justify="center">
-        <h1 class="main-title">なぜブログを作ったのか？</h1>
+        <h1 class="main-title">自己紹介</h1>
       </v-row>
-      <v-row justify="center">
-        <div class="d-flex flex-column flex-md-row">
-          <v-lazy
-            v-model="isActive"
-            :options="{
-          threshold: 0.5
-        }"
-            min-height="200"
-            transition="slide-x-transition"
-          >
-            <v-avatar tile class="mx-auto mr-md-12" size="300">
-              <v-img
-                class="thumbnail mb-12"
-                v-bind:src="require('@/assets/images/pc.jpg')"
-                max-height="400"
-                width="400"
-              ></v-img>
-            </v-avatar>
-          </v-lazy>
-          <article class="text-center text-md-left">
-            <h2>
-              自分と同じ悩みを抱えた人へ、
-              <br />人生を変えるキッカケを
-            </h2>
-            <v-btn class="ma-2" tile outlined color="success" to="/purpose" nuxt>
-              <v-icon left>mdi-pencil</v-icon>Go Page
-            </v-btn>
-          </article>
-        </div>
+      <v-row>
+        <v-col offset-sm="2" class="area">
+          <v-avatar class="mx-auto" size="350">
+            <v-img
+              :src="setPersonEyeCatch(person[0]).url"
+              :alt="setPersonEyeCatch(person[0]).title"
+              max-height="350"
+              id="first"
+            ></v-img>
+          </v-avatar>
+          <v-card class="intro" max-height="330">
+            <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
+            <v-card-text class="text--primary">
+              <div v-html="$md.render(person[0].fields.shortBio)"></div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                class="ma-2"
+                tile
+                outlined
+                color="success"
+                to="/person"
+                nuxt
+                :disabled="dialog"
+                :loading="dialog"
+                @click="dialog = true"
+              >
+                <v-icon left>mdi-pencil</v-icon>Go Page
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -140,15 +135,54 @@ export default {
   data() {
     return {
       dialog: false,
-      isActive: false
+      isActive: false,
+      positionY: 0,
+      positions: {
+        first: 0,
+        second: 0
+      }
     };
   },
 
   watch: {
+    //dailog監視
     dialog(val) {
       if (!val) return;
 
       setTimeout(() => (this.dialog = false), 4000);
+    },
+    //scrollY軸の範囲判定
+    positionY(to, from) {
+      const scrollOffset = to + 100;
+      let el;
+      //second要素のtopが50いかになったら
+      if (this.positions.first <= scrollOffset) {
+        el = document.getElementById("first");
+        //animationクラスを付与
+        el.setAttribute("class", "animation");
+      }
+      if (this.positions.second <= scrollOffset) {
+        el = document.getElementById("second");
+        //animationクラスを付与
+        el.setAttribute("class", "animation");
+      }
+    }
+  },
+  //id="second"が付与された要素Y軸を、dataのsecondに代入
+  mounted() {
+    window.addEventListener("scroll", this.checkScroll);
+
+    this.positions = {
+      first: document.getElementById("first").getBoundingClientRect().top,
+      second: document.getElementById("second").getBoundingClientRect().top
+    };
+
+    this.positionY++;
+  },
+  methods: {
+    //Y軸を取得(this.positionY = window.scrollYのみでもOK)
+    checkScroll() {
+      this.positionY = window.scrollY ? window.scrollY : window.pageYOffset;
     }
   },
   components: {
@@ -174,7 +208,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main-title {
   text-decoration: underline blue;
   font-size: 36px;
@@ -190,5 +224,47 @@ ul {
 .divier {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+#first {
+  opacity: 0;
+  transition: all 1000ms;
+  transform: translate(-100px, 0);
+  &.animation {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#second {
+  opacity: 0;
+  transition: all 3000ms;
+  &.animation {
+    opacity: 1;
+  }
+}
+
+.area {
+  position: relative;
+}
+
+.intro {
+  position: absolute;
+  opacity: 0.9;
+  width: 50%;
+  top: 20%;
+  left: 35%;
+}
+
+@media screen and (max-width: 600px) {
+  .area {
+    position: static;
+    text-align: center;
+  }
+  .intro {
+    position: static;
+    margin: auto;
+    width: 100%;
+  }
 }
 </style>

@@ -35,17 +35,17 @@
     </v-app-bar>
 
     <!--ページ本体-->
-    <v-content>
+    <v-content class="mb-4">
       <router-view />
     </v-content>
 
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2020 Shou</span>
+    <v-footer color="indigo">
+      <span class="white--text" >&copy; 2020 Shou</span>
     </v-footer>
   </v-app>
 </template>
 
-<script>
+<script scoped>
 export default {
   data: () => ({
     drawer: null

@@ -14,14 +14,14 @@
               >{{ post.fields.category.fields.name }}</v-chip>
             </v-card-text>
           </v-img>
-          <v-card-title class="title">{{ post.fields.title }}</v-card-title>
+          <v-card-title class="title text--primary">{{ post.fields.title }}</v-card-title>
           <v-card-subtitle>
             <time>
               {{ ( new Date(post.fields.publishDate)).toDateString() }}
               <span :is="draftChip(post)" />
             </time>
           </v-card-subtitle>
-          <v-card-text>{{ post.fields.description }}</v-card-text>
+          <v-card-text class="text--primary">{{ post.fields.description }}</v-card-text>
         </v-card>
       </nuxt-link>
     </v-hover>
@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .link {
   text-decoration: none;
 }

@@ -1,21 +1,24 @@
 <template>
   <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
-
-    <v-list-item-group color="indigo" class="mt-5">
-      <v-row no-gutters>
-        <v-list-item v-for="(item, i) in categoryItems" :key="i" :to="linkTo('categories', item)">
-          <v-col>
-            <v-img
-              :src="setCategoriesEyeCatch(item).url"
-              :alt="setCategoriesEyeCatch(item).title"
-              :aspect-ratio="16/9"
-            ></v-img>
-          </v-col>
-          <v-col>{{ item.fields.definition }}</v-col>
-        </v-list-item>
-      </v-row>
-    </v-list-item-group>
+    <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
+      <v-timeline-item v-for="(item, i) in categoryItems" :key="i" fill-dot>
+        <v-card :color="categoryColor(item)">
+          <v-card-title class="title">{{item.fields.name}}</v-card-title>
+          <v-card-text class="white text--primary pt-3">
+            <div v-html="$md.render(item.fields.definition)"></div>
+          </v-card-text>
+          <v-card-actions class="white">
+            <v-btn
+              :color="categoryColor(item)"
+              class="mx-0"
+              outlined
+              :to="linkTo('categories', item)"
+            >Button</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-timeline-item>
+    </v-timeline>
   </v-container>
 </template>
 
@@ -23,16 +26,6 @@
 import { mapState, mapGetters } from "vuex";
 
 export default {
-  data: () => ({
-    search: "",
-    headers: [
-      {
-        text: "カテゴリー",
-        align: "left",
-        value: "fields.name" //category.fields.name
-      }
-    ],
-  }),
   computed: {
     ...mapState(["categories"]),
     ...mapGetters(["linkTo", "setCategoriesEyeCatch"]),
@@ -54,7 +47,21 @@ export default {
           categories.push(this.categories[i]);
       }
       return categories;
+    },
+    categoryColor() {
+      return category => {
+        switch (category.fields.name) {
+          case "Programming":
+            return "indigo";
+          case "Marketing":
+            return "#236244";
+          case "Mind":
+            return "primary";
+          default:
+            return "grey darken-3";
+        }
+      };
     }
-  }
+  },
 };
 </script>

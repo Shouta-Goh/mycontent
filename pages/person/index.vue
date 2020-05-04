@@ -16,7 +16,7 @@
               </v-avatar>
               <v-card class="intro">
                 <v-card-title>Shou</v-card-title>
-                <v-card-text>
+                <v-card-text class="text--primary">
                   初めまして！ Shouといいます
                   <br />今は現役SEとして会社に勤めながら
                   <br />
@@ -144,30 +144,21 @@ primary {
     max-width: 600px;
     max-height: 400px;
   }
-  ul {
-    margin: 0;
-    padding-left: 1em;
-    li {
-      margin: 0;
-      font-size: 1em;
-      list-style: none;
-    }
-  }
 }
 
 .area {
   position: relative;
 }
-
+/*
 .thumnail {
   position: absolute;
 }
+*/
 
 .intro {
   position: absolute;
   top: 50%;
   left: 40%;
-  background: rgb(191, 214, 223);
   opacity: 0.9;
   width: 50%;
 }

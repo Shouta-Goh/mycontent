@@ -103,7 +103,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card-titles {
   font-size: 1.0em;
   line-height: 1.1em;
