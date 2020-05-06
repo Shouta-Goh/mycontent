@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item href="/">
+        <v-list-item href="/" :disabled="dialog" :loading="dialog" @click="dialog = true">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -10,7 +10,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/person" nuxt>
+        <v-list-item to="/person" nuxt :disabled="dialog" :loading="dialog" @click="dialog = true">
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
@@ -18,7 +18,7 @@
             <v-list-item-title>Profile</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/purpose" nuxt>
+        <v-list-item to="/purpose" nuxt :disabled="dialog" :loading="dialog" @click="dialog = true">
           <v-list-item-action>
             <v-icon>mdi-contact-mail</v-icon>
           </v-list-item-action>
@@ -26,6 +26,14 @@
             <v-list-item-title>Purpose</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-dialog v-model="dialog" hide-overlay persistent width="300">
+          <v-card color="primary" dark>
+            <v-card-text>
+              Please stand by
+              <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
       </v-list>
     </v-navigation-drawer>
 
@@ -40,7 +48,7 @@
     </v-content>
 
     <v-footer color="indigo">
-      <span class="white--text" >&copy; 2020 Shou</span>
+      <span class="white--text">&copy; 2020 Shou</span>
     </v-footer>
   </v-app>
 </template>
@@ -48,7 +56,15 @@
 <script scoped>
 export default {
   data: () => ({
-    drawer: null
-  })
+    drawer: null,
+    dialog: false
+  }),
+  watch: {
+    dialog(val) {
+      if (!val) return;
+
+      setTimeout(() => (this.dialog = false), 1000);
+    }
+  }
 };
 </script>

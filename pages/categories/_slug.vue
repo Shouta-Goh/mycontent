@@ -27,18 +27,18 @@
                       />
                     </time>
                   </v-card-subtitle>
-                    <template v-if="post.fields.tags">
-                      <v-chip
-                        v-for="(tag) in post.fields.tags"
-                        :key="tag.sys.id"
-                        color="primary"
-                        dark
-                        small
-                        label
-                        outlined
-                        class="ma-1 font-weight-bold"
-                      >{{ tag.fields.name }}</v-chip>
-                    </template>
+                  <template v-if="post.fields.tags">
+                    <v-chip
+                      v-for="(tag) in post.fields.tags"
+                      :key="tag.sys.id"
+                      color="primary"
+                      dark
+                      small
+                      label
+                      outlined
+                      class="ma-1 font-weight-bold"
+                    >{{ tag.fields.name }}</v-chip>
+                  </template>
                 </v-col>
               </v-row>
             </v-card>
@@ -103,9 +103,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card-titles {
-  font-size: 1.0em;
+  font-size: 1em;
   line-height: 1.1em;
 }
 .link {

@@ -32,8 +32,8 @@
             color="success"
             to="/categories"
             nuxt
-            :disabled="dialog"
-            :loading="dialog"
+            :disabled="false"
+            :loading="false"
             @click="dialog = true"
           >
             <v-icon left>mdi-pencil</v-icon>Go Page
@@ -48,21 +48,23 @@
           </v-dialog>
         </v-row>
       </ul>
+
       <v-divider class="divier"></v-divider>
       <v-row justify="center">
         <h1 class="main-title">自己紹介</h1>
       </v-row>
       <v-row>
         <v-col offset-sm="2" class="area">
-          <v-avatar class="mx-auto" size="350">
+          <v-avatar class="mx-auto" size="250">
             <v-img
               :src="setPersonEyeCatch(person[0]).url"
               :alt="setPersonEyeCatch(person[0]).title"
-              max-height="350"
+              height="250"
+              width="250"
               id="first"
             ></v-img>
           </v-avatar>
-          <v-card class="intro" max-height="330">
+          <v-card class="intro sa sa--down" max-height="330">
             <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
             <v-card-text class="text--primary">
               <div v-html="$md.render(person[0].fields.shortBio)"></div>
@@ -86,23 +88,23 @@
         </v-col>
       </v-row>
 
+      <v-divider class="divier"></v-divider>
       <v-row justify="center">
-        <h1 class="main-title">自己紹介</h1>
+        <h1 class="main-title">ブログを作った理由</h1>
       </v-row>
       <v-row>
-        <v-col offset-sm="2" class="area">
-          <v-avatar class="mx-auto" size="350">
+        <v-col offset-sm="6" class="area">
+          <v-avatar tile class="mx-auto sa sa--down" size="350">
             <v-img
-              :src="setPersonEyeCatch(person[0]).url"
-              :alt="setPersonEyeCatch(person[0]).title"
+              :src="setEyeCatch(purposePosts[0]).url"
+              :alt="setEyeCatch(purposePosts[0]).title"
               max-height="350"
-              id="first"
             ></v-img>
           </v-avatar>
-          <v-card class="intro" max-height="330">
-            <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
+          <v-card class="intro2 sa sa--rl" max-height="330">
+            <v-card-title class="text--primary">{{ purposePosts[0].fields.title }}</v-card-title>
             <v-card-text class="text--primary">
-              <div v-html="$md.render(person[0].fields.shortBio)"></div>
+              <div v-html="$md.render(purposePosts[0].fields.description)"></div>
             </v-card-text>
             <v-card-actions>
               <v-btn
@@ -110,7 +112,7 @@
                 tile
                 outlined
                 color="success"
-                to="/person"
+                to="/purpose"
                 nuxt
                 :disabled="dialog"
                 :loading="dialog"
@@ -131,6 +133,23 @@ import ArticlePreview from "~/components/article-preview.vue";
 import categoryList from "~/components/category-list";
 import { mapState, mapGetters } from "vuex";
 
+if (process.browser) {
+  var scrollAnimationElm = document.querySelectorAll(".sa");
+  var scrollAnimationFunc = function() {
+    for (var i = 0; i < scrollAnimationElm.length; i++) {
+      var triggerMargin = 200;
+      if (
+        window.innerHeight >
+        scrollAnimationElm[i].getBoundingClientRect().top + triggerMargin
+      ) {
+        scrollAnimationElm[i].classList.add("show");
+      }
+    }
+  };
+  window.addEventListener("load", scrollAnimationFunc);
+  window.addEventListener("scroll", scrollAnimationFunc);
+}
+
 export default {
   data() {
     return {
@@ -143,12 +162,10 @@ export default {
       }
     };
   },
-
   watch: {
     //dailog監視
     dialog(val) {
       if (!val) return;
-
       setTimeout(() => (this.dialog = false), 4000);
     },
     //scrollY軸の範囲判定
@@ -191,7 +208,7 @@ export default {
   },
   computed: {
     ...mapState(["posts", "person"]),
-    ...mapGetters(["setPersonEyeCatch"]),
+    ...mapGetters(["setPersonEyeCatch","setEyeCatch", "purposePosts"]),
     PostsData() {
       const posts = [];
       for (let i = 0; i < this.posts.length; i++) {
@@ -203,6 +220,9 @@ export default {
         }
       }
       return posts;
+    },
+    purposePosts() {
+      return this.$store.getters.purposePosts();
     }
   }
 };
@@ -236,24 +256,43 @@ ul {
   }
 }
 
-#second {
-  opacity: 0;
-  transition: all 3000ms;
-  &.animation {
-    opacity: 1;
-  }
-}
-
 .area {
   position: relative;
+  min-height:450px
 }
 
 .intro {
   position: absolute;
   opacity: 0.9;
+  width: 60%;
+  top: 20%;
+  left: 20%;
+  bottom:0%;
+}
+
+.intro2 {
+  position: absolute;
+  opacity: 0.9;
   width: 50%;
   top: 20%;
-  left: 35%;
+  left: -75%;
+}
+
+.sa {
+  opacity: 0;
+  transition: all 1000ms;
+  &.show {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+.sa--rl {
+  transform: translate(100px, 0);
+}
+ 
+.sa--down {
+  transform: translate(0, -100px);
 }
 
 @media screen and (max-width: 600px) {
@@ -262,6 +301,11 @@ ul {
     text-align: center;
   }
   .intro {
+    position: static;
+    margin: auto;
+    width: 100%;
+  }
+  .intro2 {
     position: static;
     margin: auto;
     width: 100%;

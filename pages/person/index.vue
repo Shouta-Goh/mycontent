@@ -97,24 +97,11 @@ box {
   background: #fdff7d;
 }
 
-primary {
-  color: #1971ff;
-}
-
 .table-of-contents {
   background: #f3f3f3;
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
-  ul {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 250px;
-    li {
-      list-style: none;
-    }
-  }
 }
 
 .headline {
