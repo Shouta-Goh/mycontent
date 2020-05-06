@@ -89,8 +89,8 @@ strong {
 }
 
 em {
-  text-decoration: underline blue;
-  color: gray;
+  color: #223377;
+  font-weight: bold;
 }
 
 box {

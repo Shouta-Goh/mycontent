@@ -2,7 +2,7 @@
   <v-card>
     <v-breadcrumbs :items="breadcrumbs">
       <template #item="props">
-        <v-breadcrumbs-item :to="props.item.to">
+        <v-breadcrumbs-item :href="props.item.href">
           <v-icon v-if="props.item.icon" color="primary">{{ props.item.icon }}</v-icon>
           <span class="ml-1">{{ props.item.text }}</span>
         </v-breadcrumbs-item>
@@ -25,7 +25,7 @@ export default {
     }
   },
   data: () => ({
-    items: [{ icon: "mdi-home", text: "ホーム", to: "/" }]
+    items: [{ icon: "mdi-home", text: "ホーム", href: "/" }]
   }),
   computed: {
     breadcrumbs() {
