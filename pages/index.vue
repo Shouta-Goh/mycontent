@@ -64,7 +64,7 @@
               id="first"
             ></v-img>
           </v-avatar>
-          <v-card class="intro sa sa--down" max-height="330">
+          <v-card class="intro sa sa--down">
             <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
             <v-card-text class="text--primary">
               <div v-html="$md.render(person[0].fields.shortBio)"></div>
@@ -98,10 +98,11 @@
             <v-img
               :src="setEyeCatch(purposePosts[0]).url"
               :alt="setEyeCatch(purposePosts[0]).title"
-              max-height="350"
+              height="350"
+              width="330"
             ></v-img>
           </v-avatar>
-          <v-card class="intro2 sa sa--rl" max-height="330">
+          <v-card class="intro2 sa sa--rl">
             <v-card-title class="text--primary">{{ purposePosts[0].fields.title }}</v-card-title>
             <v-card-text class="text--primary">
               <div v-html="$md.render(purposePosts[0].fields.description)"></div>
@@ -273,7 +274,7 @@ ul {
 .intro2 {
   position: absolute;
   opacity: 0.9;
-  width: 50%;
+  width: 90%;
   top: 20%;
   left: -75%;
 }
@@ -298,7 +299,6 @@ ul {
 @media screen and (max-width: 600px) {
   .area {
     position: static;
-    text-align: center;
   }
   .intro {
     position: static;
