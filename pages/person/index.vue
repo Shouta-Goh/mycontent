@@ -38,7 +38,8 @@
             <div class="copies">
               <div v-html="$md.render(personPosts[0].fields.body)"></div>
             </div>
-            <v-icon large color="dark">mdi-arrow-down-bold</v-icon><br>
+            <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
+            <br />
             <v-btn class="shiny" large rounded color="success" href="https://lin.ee/xbOIFl8">
               <v-icon>mdi-message-outline</v-icon>LINE公式アカウント
             </v-btn>
@@ -84,12 +85,12 @@ export default {
 </script>
 
 <style lang="scss">
-html{
-  font-size:62.5%;
+html {
+  font-size: 62.5%;
 }
 
-body{
-  font-size:1.6em;
+body {
+  font-size: 1.6em;
 }
 
 strong {
@@ -129,51 +130,58 @@ box {
 }
 
 .copies {
-  h3 {
-    font-size:1.4rem;
+  h1 {
+    font-size: 3.3rem;
   }
   p {
-    font-size: 1.4rem;
+    font-size: 2.9rem;
   }
   img {
     width: 100%;
-    max-width: 400px;
-    max-height: 300px;
+    max-width: 100%;
+    height: auto;
   }
 }
 
 .shiny {
-    padding: 10px 0;
-    margin: 30px auto;
-    font-weight: bold;
-    font-size: 18px;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    overflow: hidden;
+  padding: 10px 0;
+  margin: 30px auto;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
 }
 .shiny::before {
-    top: -180px;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    animation: shiny 3s ease-in-out infinite;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  animation: shiny 3s ease-in-out infinite;
 }
 @keyframes shiny {
-    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
 }
 
 .area {
   position: relative;
 }
-/*
-.thumnail {
-  position: absolute;
-}
-*/
 
 .intro {
   position: absolute;
@@ -193,6 +201,14 @@ box {
     margin: auto;
     width: 100%;
     text-align: left;
+  }
+  .copies {
+    h1 {
+      font-size: 1.7rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
   }
 }
 </style>
