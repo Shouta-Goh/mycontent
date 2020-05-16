@@ -49,13 +49,13 @@ export default {
       return category => {
         switch (category.fields.name) {
           case "Programming":
-            return "#C73A31";
+            return "indigo";
           case "Marketing":
-            return "#236244";
-          case "コラム":
-            return "primary";
+            return "green";
+          case "Mind":
+            return "orange darken-3";
           default:
-            return "grey darken-3";
+            return "grey";
         }
       };
     }

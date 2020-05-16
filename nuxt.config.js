@@ -28,7 +28,7 @@ module.exports = {
     CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
   },
   head: {
-    title: "Shou's Blog Site",
+    title: "Shou's Programming Blog",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },

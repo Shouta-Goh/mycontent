@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/header.png')" width="100%" :aspect-ratio="6/1"></v-img>
+    <v-img v-bind:src="require('@/assets/images/header.png')" width="100%" :aspect-ratio="4/1"></v-img>
     <v-container class="grey lighten-5">
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
@@ -36,7 +36,7 @@
             :loading="false"
             @click="dialog = true"
           >
-            <v-icon left>mdi-pencil</v-icon>Go Page
+            <v-icon left>mdi-format-list-bulleted</v-icon>カテゴリー一覧へ
           </v-btn>
           <v-dialog v-model="dialog" hide-overlay persistent width="300">
             <v-card color="primary" dark>
@@ -51,11 +51,11 @@
 
       <v-divider class="divier"></v-divider>
       <v-row justify="center">
-        <h1 class="main-title">自己紹介</h1>
+        <h1 class="main-title">プロフィール</h1>
       </v-row>
       <v-row>
         <v-col offset-sm="2" class="area">
-          <v-avatar class="mx-auto" size="250">
+          <v-avatar class="mx-auto avater" size="250">
             <v-img
               :src="setPersonEyeCatch(person[0]).url"
               :alt="setPersonEyeCatch(person[0]).title"
@@ -65,11 +65,12 @@
             ></v-img>
           </v-avatar>
           <v-card class="intro sa sa--down">
-            <v-card-title class="text--primary">{{ person[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary">
+            <v-card-title class="intro-title">{{ person[0].fields.title }}</v-card-title>
+            <v-card-text class="text--primary" style="padding-bottom:0;">
               <div v-html="$md.render(person[0].fields.shortBio)"></div>
+              <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
-            <v-card-actions>
+            <v-card-actions class="d-block">
               <v-btn
                 class="ma-2"
                 tile
@@ -81,7 +82,7 @@
                 :loading="dialog"
                 @click="dialog = true"
               >
-                <v-icon left>mdi-pencil</v-icon>Go Page
+                <v-icon left>mdi-account-circle</v-icon>プロフィールへ
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -94,7 +95,7 @@
       </v-row>
       <v-row>
         <v-col offset-sm="6" class="area">
-          <v-avatar tile class="mx-auto sa sa--down" size="350">
+          <v-avatar tile class="sa sa--down" size="350">
             <v-img
               :src="setEyeCatch(purposePosts[0]).url"
               :alt="setEyeCatch(purposePosts[0]).title"
@@ -103,11 +104,12 @@
             ></v-img>
           </v-avatar>
           <v-card class="intro2 sa sa--rl">
-            <v-card-title class="text--primary">{{ purposePosts[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary">
+            <v-card-title class="intro-title">{{ purposePosts[0].fields.title }}</v-card-title>
+            <v-card-text class="text--primary" style="padding-bottom:0;">
               <div v-html="$md.render(purposePosts[0].fields.description)"></div>
+              <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
-            <v-card-actions>
+            <v-card-actions class="d-block">
               <v-btn
                 class="ma-2"
                 tile
@@ -119,7 +121,7 @@
                 :loading="dialog"
                 @click="dialog = true"
               >
-                <v-icon left>mdi-pencil</v-icon>Go Page
+                <v-icon left>mdi-pencil</v-icon>ブログの目的へ
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -209,7 +211,7 @@ export default {
   },
   computed: {
     ...mapState(["posts", "person"]),
-    ...mapGetters(["setPersonEyeCatch","setEyeCatch", "purposePosts"]),
+    ...mapGetters(["setPersonEyeCatch", "setEyeCatch", "purposePosts"]),
     PostsData() {
       const posts = [];
       for (let i = 0; i < this.posts.length; i++) {
@@ -237,6 +239,12 @@ export default {
   margin-bottom: 30px;
 }
 
+.intro-title {
+  display:block;
+  font-weight: bold;
+  font-size: 24px;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
@@ -259,7 +267,8 @@ ul {
 
 .area {
   position: relative;
-  min-height:450px
+  min-height: 450px;
+  margin-bottom: 100px;
 }
 
 .intro {
@@ -268,7 +277,7 @@ ul {
   width: 60%;
   top: 20%;
   left: 20%;
-  bottom:0%;
+  bottom: 0%;
 }
 
 .intro2 {
@@ -291,7 +300,7 @@ ul {
 .sa--rl {
   transform: translate(100px, 0);
 }
- 
+
 .sa--down {
   transform: translate(0, -100px);
 }
@@ -299,7 +308,9 @@ ul {
 @media screen and (max-width: 600px) {
   .area {
     position: static;
+    text-align: center;
   }
+
   .intro {
     position: static;
     margin: auto;

@@ -54,11 +54,11 @@ export default {
           case "Programming":
             return "indigo";
           case "Marketing":
-            return "#236244";
+            return "green";
           case "Mind":
-            return "primary";
+            return "orange darken-3";
           default:
-            return "grey darken-3";
+            return "grey";
         }
       };
     }

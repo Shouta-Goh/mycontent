@@ -82,11 +82,11 @@ box {
 }
 
 h1 {
-  font-size: 1.6em;
+  font-size: 2.0vw;
 }
 
 p {
-  font-size: 1.3em;
+  font-size: 1.5vw;
 }
 
 .table-of-contents {
