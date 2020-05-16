@@ -99,8 +99,8 @@
             <v-img
               :src="setEyeCatch(purposePosts[0]).url"
               :alt="setEyeCatch(purposePosts[0]).title"
-              height="350"
-              width="330"
+              height="300"
+              width="300"
             ></v-img>
           </v-avatar>
           <v-card class="intro2 sa sa--rl">
@@ -320,6 +320,10 @@ ul {
     position: static;
     margin: auto;
     width: 100%;
+  }
+
+  .sa--rl {
+    transform: translate(0, -100px);
   }
 }
 </style>

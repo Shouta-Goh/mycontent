@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 html{
   font-size:62.5%;
 }
@@ -130,15 +130,15 @@ box {
 
 .copies {
   h3 {
-    font-size: 2.0rem;
+    font-size:1.4rem;
   }
   p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   img {
     width: 100%;
-    max-width: 600px;
-    max-height: 400px;
+    max-width: 400px;
+    max-height: 300px;
   }
 }
 

@@ -82,11 +82,11 @@ box {
 }
 
 h1 {
-  font-size: 2.0vw;
+  font-size: 1.5rem;
 }
 
 p {
-  font-size: 1.5vw;
+  font-size: 1.0rem;
 }
 
 .table-of-contents {
@@ -118,7 +118,11 @@ p {
 }
 
 .copy h3 {
-  font-size: 1.35em;
+  font-size:1.4rem;
+}
+
+.copy p {
+  font-size: 1.4rem;
 }
 
 .copy ul {
