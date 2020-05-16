@@ -144,7 +144,7 @@ box {
 }
 
 .shiny {
-  padding: 10px 0;
+  padding: 10px 20px;
   margin: 30px auto;
   font-weight: bold;
   font-size: 18px;

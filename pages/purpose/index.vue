@@ -27,9 +27,9 @@
             <div class="copy">
               <div v-html="$md.render(purposePosts[0].fields.body)"></div>
               <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
-              <br />
+              <br>
               <v-btn class="shiny" large rounded color="success" href="https://lin.ee/xbOIFl8">
-                <v-icon>mdi-message-outline</v-icon>LINE公式アカウント
+                <v-icon class="pb-5">mdi-message-outline</v-icon><span class="pb-4">LINE公式アカウント</span>
               </v-btn>
             </div>
           </main>
@@ -150,7 +150,7 @@ box {
 }
 
 .shiny {
-  padding: 10px 0;
+  padding: 10px 20px;
   margin: 30px auto;
   font-weight: bold;
   font-size: 18px;
