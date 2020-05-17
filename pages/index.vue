@@ -315,11 +315,13 @@ ul {
     position: static;
     margin: auto;
     width: 100%;
+    text-align: center;
   }
   .intro2 {
     position: static;
     margin: auto;
     width: 100%;
+    text-align: center;
   }
 
   .sa--rl {
