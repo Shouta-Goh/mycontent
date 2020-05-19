@@ -72,7 +72,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .table-of-contents {
   background: #f3f3f3;
   border: 1px solid #ccc;
@@ -101,8 +101,13 @@ export default {
 
 .copy {
   padding-bottom: 7em;
-  h3 {
+  h1 {
     font-size: 1.35em;
+    padding: 6px 10px;
+    border-left: 8px solid #29b6b7;
+    color: #333;
+    line-height: 1.5;
+    background-color: #f5f5f5;
   }
   ul {
     margin: 0;
@@ -110,6 +115,25 @@ export default {
     list-style: disc;
     li {
       margin: 0;
+    }
+  }
+  ol {
+    li {
+      padding: 6px 0;
+      border-bottom: 4px solid #ccc;
+      color: #333;
+      line-height: 1.5;
+      position: relative;
+    }
+    li:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100px;
+      height: 4px;
+      background-color: #3498db;
+      z-index: 2;
     }
   }
 }
