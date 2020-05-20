@@ -10,14 +10,19 @@
             <v-list-item-title>ホーム</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/categories" nuxt :disabled="dialog" :loading="dialog" @click="dialog = true">
-          <v-list-item-action>
-            <v-icon>mdi-format-list-bulleted</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>カテゴリー一覧</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <v-list-group prepend-icon="mdi-format-list-bulleted">
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>カテゴリー</v-list-item-title>
+            </v-list-item-content>
+          </template>
+          <v-list-item v-for="(item, i) in tableItems" :key="i" :to="linkTo('categories', item)">
+            <v-list-item-icon>
+              <v-icon size="18">mdi-tag-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>{{ item.fields.name }}</v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item to="/person" nuxt :disabled="dialog" :loading="dialog" @click="dialog = true">
           <v-list-item-action>
             <v-icon>mdi-account-circle</v-icon>
@@ -66,7 +71,9 @@
   </v-app>
 </template>
 
-<script scoped>
+<script>
+import { mapState, mapGetters } from "vuex";
+
 export default {
   data: () => ({
     drawer: null,
@@ -98,6 +105,18 @@ export default {
         top: 0,
         behavior: "smooth"
       });
+    }
+  },
+  computed: {
+    ...mapState(["categories"]),
+    ...mapGetters(["linkTo"]),
+    tableItems() {
+      const categories = [];
+      for (let i = 0; i < this.categories.length; i++) {
+        const category = this.categories[i];
+        if (category.fields.slug !== "introduction") categories.push(category);
+      }
+      return categories;
     }
   }
 };

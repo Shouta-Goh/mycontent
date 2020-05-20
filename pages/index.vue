@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/header.png')" width="100%" :aspect-ratio="4/1"></v-img>
+    <v-img v-bind:src="require('@/assets/images/header.png')" width="100%" max-width="100%" height="auto" max-height="400px"></v-img>
     <v-container class="grey lighten-5">
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>

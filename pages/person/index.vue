@@ -134,7 +134,7 @@ box {
     font-size: 3.3rem;
   }
   p {
-    font-size: 2.9rem;
+    font-size: 2.0rem;
   }
   img {
     width: 100%;
@@ -207,7 +207,7 @@ box {
       font-size: 1.7rem;
     }
     p {
-      font-size: 1.4rem;
+      font-size: 2.4rem;
     }
   }
 }

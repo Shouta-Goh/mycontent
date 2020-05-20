@@ -72,7 +72,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table-of-contents {
   background: #f3f3f3;
   border: 1px solid #ccc;
@@ -88,10 +88,17 @@ export default {
   padding: 0.2em 0 0;
   .tiny {
     font-size: 0.5em;
+    padding: 0.2em 0 0;
+    color:gray;
   }
   h1 {
-    font-size: 2em;
-    line-height: 1.1em;
+    position: relative;
+    padding: 0 0 5px 0;
+    border-bottom: #bfbfbf dotted 1px;
+  }
+  h1:first-letter {
+    font-size: 42px;
+    color: #29b6b7;
   }
 }
 
@@ -135,6 +142,11 @@ export default {
       background-color: #3498db;
       z-index: 2;
     }
+  }
+    img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
   }
 }
 </style>

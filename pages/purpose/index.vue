@@ -112,7 +112,7 @@ box {
 }
 
 .headline h1 {
-  font-size: 2em;
+  font-size: 2.5em;
   line-height: 1.1em;
 }
 
@@ -129,7 +129,7 @@ box {
     font-size: 3.3rem;
   }
   p {
-    font-size: 2.9rem;
+    font-size: 2.4rem;
   }
 
   img {
@@ -201,7 +201,7 @@ box {
       font-size: 1.7rem;
     }
     p {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
     }
   }
 }
