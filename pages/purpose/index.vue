@@ -83,7 +83,7 @@ body {
 }
 
 strong {
-  background:linear-gradient(transparent 60%,#ffff99,40%);
+  color: #ff0011;
   color: rgb(39, 37, 37);
 }
 

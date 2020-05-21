@@ -210,7 +210,7 @@ box {
       font-size: 1.7rem;
     }
     p {
-      font-size: 2.4rem;
+      font-size: 1.5rem;
     }
   }
   .table-of-contents a {
