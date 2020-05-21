@@ -15,8 +15,8 @@
                 ></v-img>
               </v-avatar>
               <v-card class="intro">
-                <v-card-title>Shou</v-card-title>
-                <v-card-text class="text--primary">
+                <v-card-title style="font-size:2.5rem;">Shou</v-card-title>
+                <v-card-text class="text--primary" style="font-size:1.2rem;">
                   初めまして！ Shouといいます
                   <br />今は現役SEとして会社に勤めながら
                   <br />
@@ -112,6 +112,9 @@ box {
   border: 1px solid #ccc;
   padding: 2px 10px;
   width: fit-content;
+  a {
+    font-size: 2.5rem;
+  }
 }
 
 .headline {
@@ -134,7 +137,7 @@ box {
     font-size: 3.3rem;
   }
   p {
-    font-size: 2.0rem;
+    font-size: 2.5rem;
   }
   img {
     width: 100%;
@@ -209,6 +212,9 @@ box {
     p {
       font-size: 2.4rem;
     }
+  }
+  .table-of-contents a {
+    font-size: 1.5rem;
   }
 }
 </style>

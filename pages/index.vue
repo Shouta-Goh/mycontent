@@ -66,7 +66,7 @@
           </v-avatar>
           <v-card class="intro sa sa--down">
             <v-card-title class="intro-title">{{ person[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary" style="padding-bottom:0;">
+            <v-card-text class="text--primary" style="padding-bottom:0; font-size:1.0em; line-height: 1.1em;">
               <div v-html="$md.render(person[0].fields.shortBio)"></div>
               <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
@@ -105,7 +105,7 @@
           </v-avatar>
           <v-card class="intro2 sa sa--rl">
             <v-card-title class="intro-title">{{ purposePosts[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary" style="padding-bottom:0;">
+            <v-card-text class="text--primary" style="padding-bottom:0;  font-size:1.0em; line-height: 1.1em;">
               <div v-html="$md.render(purposePosts[0].fields.description)"></div>
               <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
