@@ -3,7 +3,7 @@
     <v-hover v-slot:default="{ hover }">
       <nuxt-link :to="linkTo('blog', post)" class="link">
         <v-card width="300" height="400" v-ripple :elevation="hover ? 12 : 2" :loading="loading">
-          <v-img :src="setEyeCatch(post).url" :alt="setEyeCatch(post).title" :aspect-ratio="4/1">
+          <v-img :src="setEyeCatch(post).url" :alt="setEyeCatch(post).title" :aspect-ratio="16/9">
             <v-card-text>
               <v-chip
                 small
