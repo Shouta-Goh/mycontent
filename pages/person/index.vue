@@ -94,12 +94,12 @@ body {
 }
 
 strong {
-  color: #ff0011;
+  background: linear-gradient(transparent 60%, #EB8686 60%);
   font-weight: bold;
 }
 
 em {
-  color: #223377;
+  color: rgb(31, 31, 243);
   font-weight: bold;
 }
 

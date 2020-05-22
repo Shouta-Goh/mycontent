@@ -98,7 +98,7 @@ export default {
   }
   h1:first-letter {
     font-size: 42px;
-    color: #29b6b7;
+    color: #6088C6;
   }
 }
 
@@ -111,7 +111,7 @@ export default {
   h1 {
     font-size: 1.35em;
     padding: 6px 10px;
-    border-left: 8px solid #29b6b7;
+    border-left: 8px solid #6088C6;
     color: #333;
     line-height: 1.5;
     background-color: #f5f5f5;
@@ -122,6 +122,7 @@ export default {
     list-style: disc;
     li {
       margin: 0;
+      font-size: 2.5rem;
     }
   }
   ol {
@@ -131,6 +132,7 @@ export default {
       color: #333;
       line-height: 1.5;
       position: relative;
+      font-size: 2.5rem;
     }
     li:before {
       content: "";
@@ -139,7 +141,7 @@ export default {
       left: 0;
       width: 100px;
       height: 4px;
-      background-color: #3498db;
+      background-color: #6088C6;
       z-index: 2;
     }
   }

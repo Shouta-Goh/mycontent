@@ -83,13 +83,13 @@ body {
 }
 
 strong {
-  color: #ff0011;
+  background: linear-gradient(transparent 60%, #fb3845a1 60%);
   color: rgb(39, 37, 37);
 }
 
 em {
-  text-decoration: underline blue;
-  color: gray;
+  color: rgb(31, 31, 243);
+  font-weight: bold;
 }
 
 box {
