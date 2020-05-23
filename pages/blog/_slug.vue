@@ -2,7 +2,7 @@
   <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="8">
         <header class="article header">
           <v-row>
             <v-col>
@@ -10,6 +10,8 @@
                 :src="setEyeCatch(post).url"
                 :alt="setEyeCatch(post).title"
                 :aspect-ratio="16/9"
+                class="mx-10"
+                style="border-radius: 10px;"
               ></v-img>
             </v-col>
           </v-row>
@@ -24,11 +26,12 @@
 
             <div class="copy">
               <div v-html="$md.render(post.fields.body)"></div>
+            <LineButton></LineButton>
             </div>
           </main>
         </section>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="4">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -37,6 +40,7 @@
 
 <script>
 import CategoryList from "~/components/category-list.vue";
+import LineButton from "~/components/line-button.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -55,7 +59,8 @@ export default {
     }
   },
   components: {
-    CategoryList
+    CategoryList,
+    LineButton
   },
   computed: {
     ...mapGetters(["setEyeCatch", "linkTo"]),
@@ -108,7 +113,7 @@ export default {
 
 .copy {
   padding-bottom: 7em;
-  h1 {
+  h2 {
     font-size: 1.35em;
     padding: 6px 10px;
     border-left: 8px solid #6088C6;
@@ -146,9 +151,47 @@ export default {
     }
   }
     img {
-    width: 100%;
-    max-width: 100%;
+    width: 70%;
+    max-width: 70%;
     height: auto;
+    margin:0 30px;
+    border-radius: 10px;
+  }
+}
+
+.shiny {
+  padding: 10px 20px;
+  margin: 30px auto;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+}
+.shiny::before {
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  animation: shiny 3s ease-in-out infinite;
+}
+@keyframes shiny {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
   }
 }
 </style>

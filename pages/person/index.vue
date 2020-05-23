@@ -39,6 +39,7 @@
               <div v-html="$md.render(personPosts[0].fields.body)"></div>
             </div>
             <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
+            <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             <br />
             <v-btn class="shiny" large rounded color="success" href="https://lin.ee/xbOIFl8">
               <v-icon>mdi-message-outline</v-icon>LINE公式アカウント
@@ -55,11 +56,13 @@
 
 <script>
 import CategoryList from "~/components/category-list.vue";
+import LineButton from "~/components/line-button.vue";
 import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
-    CategoryList
+    CategoryList,
+    LineButton
   },
   computed: {
     ...mapGetters(["setEyeCatch", "linkTo", "personPosts"]),
@@ -77,9 +80,6 @@ export default {
     personPosts() {
       return this.$store.getters.personPosts();
     }
-  },
-  components: {
-    CategoryList
   }
 };
 </script>
@@ -94,7 +94,7 @@ body {
 }
 
 strong {
-  background: linear-gradient(transparent 60%, #EB8686 60%);
+  background: linear-gradient(transparent 60%, #eb8686 60%);
   font-weight: bold;
 }
 
@@ -133,16 +133,18 @@ box {
 }
 
 .copies {
-  h1 {
+  h2 {
     font-size: 3.3rem;
   }
   p {
     font-size: 2.5rem;
   }
   img {
-    width: 100%;
-    max-width: 100%;
+    width: 70%;
+    max-width: 70%;
     height: auto;
+    margin: 0 30px;
+    border-radius: 10px;
   }
 }
 
@@ -206,7 +208,7 @@ box {
     text-align: left;
   }
   .copies {
-    h1 {
+    h2 {
       font-size: 1.7rem;
     }
     p {

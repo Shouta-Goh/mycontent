@@ -2,7 +2,7 @@
   <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row justify="center">
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="8">
         <header class="article header">
           <v-row>
             <v-col>
@@ -10,6 +10,8 @@
                 :src="setEyeCatch(purposePosts[0]).url"
                 :alt="setEyeCatch(purposePosts[0]).title"
                 :aspect-ratio="16/9"
+                class="mx-10"
+                style="border-radius: 10px;"
               ></v-img>
             </v-col>
           </v-row>
@@ -26,16 +28,12 @@
 
             <div class="copy">
               <div v-html="$md.render(purposePosts[0].fields.body)"></div>
-              <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
-              <br>
-              <v-btn class="shiny" large rounded color="success" href="https://lin.ee/xbOIFl8">
-                <v-icon class="pb-5">mdi-message-outline</v-icon><span class="pb-4">LINE公式アカウント</span>
-              </v-btn>
+              <LineButton></LineButton>
             </div>
           </main>
         </section>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="4">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
@@ -44,11 +42,13 @@
 
 <script>
 import CategoryList from "~/components/category-list.vue";
+import LineButton from "~/components/line-button.vue";
 import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
-    CategoryList
+    CategoryList,
+    LineButton
   },
   computed: {
     ...mapGetters(["setEyeCatch", "linkTo", "purposePosts"]),
@@ -67,9 +67,6 @@ export default {
       return this.$store.getters.purposePosts();
     }
   },
-  components: {
-    CategoryList
-  }
 };
 </script>
 
@@ -128,7 +125,7 @@ box {
 }
 
 .copy {
-  h1 {
+  h2 {
     font-size: 3.3rem;
   }
   p {
@@ -136,9 +133,11 @@ box {
   }
 
   img {
-    width: 100%;
-    max-width: 100%;
+    width: 70%;
+    max-width: 70%;
     height: auto;
+    margin:0 30px;
+    border-radius: 10px;
   }
 }
 
@@ -200,7 +199,7 @@ box {
     text-align: left;
   }
   .copy {
-    h1 {
+    h2 {
       font-size: 1.7rem;
     }
     p {

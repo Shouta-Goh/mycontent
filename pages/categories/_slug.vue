@@ -2,7 +2,7 @@
   <v-container class="grey lighten-5">
     <breadcrumbs :add-items="addBreads" />
     <v-row>
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="8">
         <h1>{{ category.fields.name }}</h1>
 
         <div v-for="(post, i) in relatedPosts" :key="i">
@@ -46,7 +46,7 @@
           <br />
         </div>
       </v-col>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="4">
         <CategoryList></CategoryList>
       </v-col>
     </v-row>
