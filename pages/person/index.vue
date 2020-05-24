@@ -113,7 +113,7 @@ box {
   padding: 2px 10px;
   width: fit-content;
   a {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -214,9 +214,11 @@ box {
     p {
       font-size: 1.5rem;
     }
-  }
-  .table-of-contents a {
-    font-size: 1.5rem;
+    img {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 </style>

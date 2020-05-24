@@ -10,7 +10,7 @@
                 :src="setEyeCatch(post).url"
                 :alt="setEyeCatch(post).title"
                 :aspect-ratio="16/9"
-                class="mx-10"
+                class="mx-sm-10"
                 style="border-radius: 10px;"
               ></v-img>
             </v-col>
@@ -26,7 +26,7 @@
 
             <div class="copy">
               <div v-html="$md.render(post.fields.body)"></div>
-            <LineButton></LineButton>
+              <LineButton></LineButton>
             </div>
           </main>
         </section>
@@ -83,6 +83,9 @@ export default {
   border: 1px solid #ccc;
   padding: 5px 10px;
   width: fit-content;
+  a {
+    font-size: 1.5rem;
+  }
 }
 
 .foreground .page-bar {
@@ -94,7 +97,7 @@ export default {
   .tiny {
     font-size: 0.5em;
     padding: 0.2em 0 0;
-    color:gray;
+    color: gray;
   }
   h1 {
     position: relative;
@@ -103,7 +106,7 @@ export default {
   }
   h1:first-letter {
     font-size: 42px;
-    color: #6088C6;
+    color: #6088c6;
   }
 }
 
@@ -116,7 +119,7 @@ export default {
   h2 {
     font-size: 1.35em;
     padding: 6px 10px;
-    border-left: 8px solid #6088C6;
+    border-left: 8px solid #6088c6;
     color: #333;
     line-height: 1.5;
     background-color: #f5f5f5;
@@ -146,15 +149,15 @@ export default {
       left: 0;
       width: 100px;
       height: 4px;
-      background-color: #6088C6;
+      background-color: #6088c6;
       z-index: 2;
     }
   }
-    img {
+  img {
     width: 70%;
     max-width: 70%;
     height: auto;
-    margin:0 30px;
+    margin: 0 30px;
     border-radius: 10px;
   }
 }
@@ -192,6 +195,22 @@ export default {
   100% {
     -webkit-transform: scale(50) rotate(45deg);
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .copy {
+    h2 {
+      font-size: 1.7rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+    img {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 </style>

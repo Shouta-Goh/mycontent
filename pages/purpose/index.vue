@@ -10,7 +10,7 @@
                 :src="setEyeCatch(purposePosts[0]).url"
                 :alt="setEyeCatch(purposePosts[0]).title"
                 :aspect-ratio="16/9"
-                class="mx-10"
+                class="mx-sm-10"
                 style="border-radius: 10px;"
               ></v-img>
             </v-col>
@@ -66,7 +66,7 @@ export default {
     purposePosts() {
       return this.$store.getters.purposePosts();
     }
-  },
+  }
 };
 </script>
 
@@ -99,7 +99,7 @@ box {
   padding: 5px 10px;
   width: fit-content;
   a {
-    font-size:2.5rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -136,7 +136,7 @@ box {
     width: 70%;
     max-width: 70%;
     height: auto;
-    margin:0 30px;
+    margin: 0 30px;
     border-radius: 10px;
   }
 }
@@ -205,9 +205,11 @@ box {
     p {
       font-size: 1.5rem;
     }
-  }
-  .table-of-contents a{
-    font-size: 1.5rem;
+    img {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+    }
   }
 }
 </style>

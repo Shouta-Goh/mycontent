@@ -39,6 +39,14 @@
             <v-list-item-title>ブログの目的</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/form" nuxt :disabled="dialog" :loading="dialog" @click="dialog = true">
+          <v-list-item-action>
+            <v-icon>mdi-email-check</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>お問い合わせ</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
           <v-card color="primary" dark>
             <v-card-text>
