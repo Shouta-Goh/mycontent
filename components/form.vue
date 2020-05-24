@@ -10,8 +10,8 @@
           lazy-validation
           method="post"
           name="contact"
+          data-netlify-honeypot="bot-field"
           netlify
-          action="/success.html"
         >
           <v-text-field
             v-model="contactForm.name"
@@ -37,7 +37,7 @@
           <v-btn
             :loading="contactForm.loading"
             :disabled="!contactFormValidation.valid"
-            @click="sendMail()"
+            type="submit"
             block
             large
             color="info"
@@ -46,6 +46,7 @@
         </v-form>
       </v-container>
     </v-card>
+    <!--
     <v-snackbar
       v-model="snackBar.show"
       :color="snackBar.color"
@@ -54,6 +55,7 @@
       :timeout="6000"
       class="font-weight-bold"
     >{{snackBar.message}}</v-snackbar>
+    -->
   </div>
 </template>
 
@@ -79,6 +81,7 @@ export default {
       message: ""
     }
   }),
+  /*
   methods: {    
     sendMail: function() {
       if (this.$refs.form.validate()) {
@@ -113,6 +116,6 @@ export default {
     formReset: function() {
       this.$refs.form.reset();
     }
-  }
+  }*/
 };
 </script>
