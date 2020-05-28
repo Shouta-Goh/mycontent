@@ -78,6 +78,28 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6em;
+}
+
+strong {
+  background: linear-gradient(transparent 60%, #fb3845a1 60%);
+  color: rgb(39, 37, 37);
+}
+
+em {
+  color: rgb(31, 31, 243);
+  font-weight: bold;
+}
+
+box {
+  background: yellow;
+}
+
 .table-of-contents {
   background: #f3f3f3;
   border: 1px solid #ccc;
