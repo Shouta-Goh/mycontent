@@ -1,20 +1,22 @@
 
 <template>
   <div>
-    <v-card>
+    <v-card class="elevation-6 card-style">
       <v-container>
-        <h2>お問い合わせ</h2>
+        <h2>Contact</h2>
+        <p>何か気になることがありましたら<br>
+          お気軽にお問い合わせください
+        </p>
 
         <v-form
           ref="form"
-          v-model="contactFormValidation.valid"
           lazy-validation
           method="post"
           name="contact"
           data-netlify-honeypot="bot-field"
           netlify
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <v-text-field v-show="false" v-model="contact" name="form-name" />
           <v-text-field
             v-model="contactForm.name"
             :rules="contactFormValidation.nameRules"
@@ -48,16 +50,6 @@
         </v-form>
       </v-container>
     </v-card>
-    <!--
-    <v-snackbar
-      v-model="snackBar.show"
-      :color="snackBar.color"
-      bottom
-      right
-      :timeout="6000"
-      class="font-weight-bold"
-    >{{snackBar.message}}</v-snackbar>
-    -->
   </div>
 </template>
 
@@ -85,41 +77,36 @@ export default {
       message: ""
     }
   })
-  /*
-  methods: {    
-    sendMail: function() {
-      if (this.$refs.form.validate()) {
-        this.contactForm.loading = true;
-        const mailer = functions.httpsCallable("sendMail");
-
-        mailer(this.contactForm)
-          .then(() => {
-            this.formReset();
-            this.showSnackBar(
-              "success",
-              "お問い合わせありがとうございます。送信完了しました"
-            );
-          })
-          .catch(err => {
-            this.showSnackBar(
-              "error",
-              "送信に失敗しました。時間をおいて再度お試しください"
-            );
-            console.log(err);
-          })
-          .finally(() => {
-            this.contactForm.loading = false;
-          });
-      }
-    },
-    showSnackBar: function(color, message) {
-      this.snackBar.message = message;
-      this.snackBar.color = color;
-      this.snackBar.show = true;
-    },
-    formReset: function() {
-      this.$refs.form.reset();
-    }
-  }*/
 };
 </script>
+
+<style scoped>
+.card-style{
+  text-align: center;
+
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+  margin: 8px;
+}
+
+h2:before, h2:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background-color: black;
+}
+
+h2:before {
+  left:0;
+}
+h2:after {
+  right: 0;
+}
+</style>

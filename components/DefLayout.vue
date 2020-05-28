@@ -50,8 +50,8 @@
         <v-dialog v-model="dialog" hide-overlay persistent width="300">
           <v-card color="primary" dark>
             <v-card-text>
-              Loading Now  . . .
-              <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+              Loading Now . . .
+              <v-progress-linear indeterminate color="white"></v-progress-linear>
             </v-card-text>
           </v-card>
         </v-dialog>
@@ -60,7 +60,7 @@
 
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Shou's Programming Blog</v-toolbar-title>
+      <v-toolbar-title class="font-title">PROG - LIFEHACK</v-toolbar-title>
     </v-app-bar>
 
     <!--ページ本体-->
@@ -143,11 +143,10 @@ export default {
   background: #5bc8ac;
 }
 
-@media screen and (max-width: 600px) {
-  .Page-Btn {
-    width: 50px;
-    height: 50px;
-  }
+.font-title {
+  font-size: 30px;
+  font-family: Georgia, serif;
+  letter-spacing: 2px;
 }
 
 .Page-Btn-Icon {
@@ -157,5 +156,16 @@ export default {
 .up-icon {
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .Page-Btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .font-title {
+    font-size: 16px;
+  }
 }
 </style>

@@ -201,10 +201,10 @@ export default {
 @media screen and (max-width: 600px) {
   .copy {
     h2 {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
     }
     p {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
     img {
       margin: 0;

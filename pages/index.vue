@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-bind:src="require('@/assets/images/header.png')" width="100%" max-width="100%" height="auto" max-height="400px"></v-img>
+    <v-img v-bind:src="require('@/assets/images/header.png')" class="top-img"></v-img>
     <v-container class="grey lighten-5">
       <v-row justify="center">
         <h1 class="main-title">新着記事</h1>
@@ -25,7 +25,7 @@
         </v-row>
         <v-row justify="center">
           <v-btn
-            class="ma-2"
+            class="button-style"
             x-large
             tile
             outlined
@@ -42,7 +42,7 @@
             <v-card color="primary" dark>
               <v-card-text>
                 Please stand by
-                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                <v-progress-linear indeterminate color="white"></v-progress-linear>
               </v-card-text>
             </v-card>
           </v-dialog>
@@ -55,7 +55,7 @@
       </v-row>
       <v-row>
         <v-col offset-sm="2" class="area">
-          <v-avatar class="mx-auto avater" size="250">
+          <v-avatar class="avater" size="250">
             <v-img
               :src="setPersonEyeCatch(person[0]).url"
               :alt="setPersonEyeCatch(person[0]).title"
@@ -66,13 +66,13 @@
           </v-avatar>
           <v-card class="intro sa sa--down">
             <v-card-title class="intro-title">{{ person[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary" style="padding-bottom:0; font-size:1.0em; line-height: 1.1em;">
+            <v-card-text class="text--primary cards">
               <div v-html="$md.render(person[0].fields.shortBio)"></div>
               <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
             <v-card-actions class="d-block">
               <v-btn
-                class="ma-2"
+                class="button-style"
                 tile
                 outlined
                 color="success"
@@ -105,13 +105,13 @@
           </v-avatar>
           <v-card class="intro2 sa sa--rl">
             <v-card-title class="intro-title">{{ purposePosts[0].fields.title }}</v-card-title>
-            <v-card-text class="text--primary" style="padding-bottom:0;  font-size:1.0em; line-height: 1.1em;">
+            <v-card-text class="text--primary cards">
               <div v-html="$md.render(purposePosts[0].fields.description)"></div>
               <v-icon large color="dark">mdi-arrow-down-bold</v-icon>
             </v-card-text>
             <v-card-actions class="d-block">
               <v-btn
-                class="ma-2"
+                class="button-style"
                 tile
                 outlined
                 color="success"
@@ -239,10 +239,27 @@ export default {
   margin-bottom: 30px;
 }
 
+.top-img {
+   width:"100%";
+   max-width:"100%";
+   height:"auto";
+   max-height:"400px";
+}
+
 .intro-title {
   display:block;
   font-weight: bold;
   font-size: 24px;
+}
+
+.button-style{
+  margin:8px;
+}
+
+.cards{
+  padding-bottom:0;
+  font-size:1.0em;
+  line-height: 1.1em;
 }
 
 ul {
