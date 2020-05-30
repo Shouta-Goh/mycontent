@@ -139,12 +139,15 @@ box {
 .copy {
   padding-bottom: 7em;
   h2 {
-    font-size: 1.35em;
+    font-size: 3.3rem;
     padding: 6px 10px;
     border-left: 8px solid #6088c6;
     color: #333;
     line-height: 1.5;
     background-color: #f5f5f5;
+  }
+    p {
+    font-size: 2.5rem;
   }
   ul {
     margin: 0;
@@ -223,10 +226,10 @@ box {
 @media screen and (max-width: 600px) {
   .copy {
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
     }
     p {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
     img {
       margin: 0;
