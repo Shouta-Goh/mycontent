@@ -18,7 +18,7 @@
           data-netlify-honeypot="bot-field"
           netlify
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <v-text-field v-show="false" v-model="contactForm.title" name="form-name" />
           <v-text-field
             v-model="contactForm.name"
             :rules="contactFormValidation.nameRules"
@@ -63,7 +63,8 @@ export default {
       name: "",
       contents: "",
       email: "",
-      loading: false
+      loading: false,
+      title: "contact"
     },
     contactFormValidation: {
       valid: false,
@@ -81,9 +82,9 @@ export default {
     }
   }),
   methods: {
-    validate () {
-      this.$refs.form.validate()
-    },
+    validate() {
+      this.$refs.form.validate();
+    }
   }
 };
 </script>
