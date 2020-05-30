@@ -80,11 +80,11 @@ export default {
       message: ""
     }
   }),
-    methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
+  methods: {
+    validate () {
+      this.$refs.form.validate()
     },
+  }
 };
 </script>
 
