@@ -4,19 +4,21 @@
     <v-card class="elevation-6 card-style">
       <v-container>
         <h2>Contact</h2>
-        <p>何か気になることがありましたら<br>
-          お気軽にお問い合わせください
+        <p>
+          何か気になることがありましたら
+          <br />お気軽にお問い合わせください
         </p>
 
         <v-form
           ref="form"
+          v-model="contactFormValidation.valid"
           lazy-validation
           method="post"
           name="contact"
           data-netlify-honeypot="bot-field"
           netlify
         >
-          <v-text-field v-show="false" v-model="contact" name="form-name" />
+          <input type="hidden" name="form-name" value="contact" />
           <v-text-field
             v-model="contactForm.name"
             :rules="contactFormValidation.nameRules"
@@ -41,6 +43,7 @@
           <v-btn
             :loading="contactForm.loading"
             :disabled="!contactFormValidation.valid"
+            @click="validate"
             type="submit"
             block
             large
@@ -76,14 +79,18 @@ export default {
       color: "",
       message: ""
     }
-  })
+  }),
+    methods: {
+      validate () {
+        this.$refs.form.validate()
+      },
+    },
 };
 </script>
 
 <style scoped>
-.card-style{
+.card-style {
   text-align: center;
-
 }
 
 h2 {
@@ -93,8 +100,9 @@ h2 {
   margin: 8px;
 }
 
-h2:before, h2:after {
-  content: '';
+h2:before,
+h2:after {
+  content: "";
   position: absolute;
   top: 50%;
   display: inline-block;
@@ -104,7 +112,7 @@ h2:before, h2:after {
 }
 
 h2:before {
-  left:0;
+  left: 0;
 }
 h2:after {
   right: 0;
