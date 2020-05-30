@@ -2,51 +2,34 @@
 <template>
   <div>
     <v-card class="elevation-6 card-style">
-      <v-container>
+      <v-container tag="section">
         <h2>Contact</h2>
-        <p>何か気になることがありましたら<br>
-          お気軽にお問い合わせください
+        <p>
+          何か気になることがありましたら
+          <br />お気軽にお問い合わせください
         </p>
-
-        <v-form
-          ref="form"
-          lazy-validation
-          method="post"
-          name="contact"
-          data-netlify-honeypot="bot-field"
-          netlify
-        >
-          <v-text-field v-show="false" v-model="contact" name="form-name" />
-          <v-text-field
-            v-model="contactForm.name"
-            :rules="contactFormValidation.nameRules"
-            label="名前"
-            required
-          ></v-text-field>
-
-          <v-text-field
-            v-model="contactForm.email"
-            :rules="contactFormValidation.emailRules"
-            label="メールアドレス"
-            required
-          ></v-text-field>
-
-          <v-textarea
-            v-model="contactForm.contents"
-            :rules="contactFormValidation.contentsRules"
-            label="内容"
-            required
-          ></v-textarea>
-
-          <v-btn
-            :loading="contactForm.loading"
-            :disabled="!contactFormValidation.valid"
-            type="submit"
-            block
-            large
-            color="info"
-            class="mt-4 font-weight-bold"
-          >送信</v-btn>
+        <v-form method="post" netlify name="contact">
+          <v-text-field v-show="false" v-model="title" name="form-name" />
+          <v-row>
+            <v-col cols="12">
+              <v-text-field v-model="name" label="name" name="name" autofocus />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-text-field v-model="email" label="E-mail" name="email" />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-textarea v-model="message" label="message" name="message" />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn :disabled="isEmpty" type="submit">submit</v-btn>
+            </v-col>
+          </v-row>
         </v-form>
       </v-container>
     </v-card>
@@ -55,35 +38,28 @@
 
 <script>
 export default {
-  data: () => ({
-    contactForm: {
+  data() {
+    return {
+      title: "contact",
       name: "",
-      contents: "",
       email: "",
-      loading: false
-    },
-    contactFormValidation: {
-      valid: false,
-      nameRules: [v => !!v || "名前は必須項目です"],
-      emailRules: [
-        v => !!v || "メールアドレスは必須項目です",
-        v => /.+@.+\..+/.test(v) || "メールアドレスを正しく入力してください"
-      ],
-      contentsRules: [v => !!v || "内容は必須項目です"]
-    },
-    snackBar: {
-      show: false,
-      color: "",
       message: ""
+    };
+  },
+  computed: {
+    isEmpty() {
+      if (this.name !== "" && this.email !== "" && this.message !== "") {
+        return false;
+      }
+      return true;
     }
-  })
+  }
 };
 </script>
 
 <style scoped>
-.card-style{
+.card-style {
   text-align: center;
-
 }
 
 h2 {
@@ -93,8 +69,9 @@ h2 {
   margin: 8px;
 }
 
-h2:before, h2:after {
-  content: '';
+h2:before,
+h2:after {
+  content: "";
   position: absolute;
   top: 50%;
   display: inline-block;
@@ -104,7 +81,7 @@ h2:before, h2:after {
 }
 
 h2:before {
-  left:0;
+  left: 0;
 }
 h2:after {
   right: 0;
