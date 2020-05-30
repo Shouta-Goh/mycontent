@@ -2,54 +2,34 @@
 <template>
   <div>
     <v-card class="elevation-6 card-style">
-      <v-container>
+      <v-container tag="section">
         <h2>Contact</h2>
         <p>
           何か気になることがありましたら
           <br />お気軽にお問い合わせください
         </p>
-
-        <v-form
-          ref="form"
-          v-model="contactFormValidation.valid"
-          lazy-validation
-          method="post"
-          name="contact"
-          data-netlify-honeypot="bot-field"
-          netlify
-        >
-          <v-text-field v-show="false" v-model="contactForm.title" name="form-name" />
-          <v-text-field
-            v-model="contactForm.name"
-            :rules="contactFormValidation.nameRules"
-            label="名前"
-            required
-          ></v-text-field>
-
-          <v-text-field
-            v-model="contactForm.email"
-            :rules="contactFormValidation.emailRules"
-            label="メールアドレス"
-            required
-          ></v-text-field>
-
-          <v-textarea
-            v-model="contactForm.contents"
-            :rules="contactFormValidation.contentsRules"
-            label="内容"
-            required
-          ></v-textarea>
-
-          <v-btn
-            :loading="contactForm.loading"
-            :disabled="!contactFormValidation.valid"
-            @click="validate"
-            type="submit"
-            block
-            large
-            color="info"
-            class="mt-4 font-weight-bold"
-          >送信</v-btn>
+        <v-form method="post" netlify>
+          <v-text-field v-show="false" v-model="title" name="form-name" />
+          <v-row>
+            <v-col cols="12">
+              <v-text-field v-model="name" label="name" name="name" autofocus />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-text-field v-model="email" label="E-mail" name="email" />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-textarea v-model="message" label="message" name="message" />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn :disabled="isEmpty" type="submit">submit</v-btn>
+            </v-col>
+          </v-row>
         </v-form>
       </v-container>
     </v-card>
@@ -57,6 +37,25 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      title: "contact",
+      name: "",
+      email: "",
+      message: ""
+    };
+  },
+  computed: {
+    isEmpty() {
+      if (this.name !== "" && this.email !== "" && this.message !== "") {
+        return false;
+      }
+      return true;
+    }
+  }
+};
+/*
 export default {
   data: () => ({
     contactForm: {
@@ -85,8 +84,20 @@ export default {
     validate() {
       this.$refs.form.validate();
     }
+  },
+  computed: {
+    isValid () {
+      if (
+        this.contactFormValidation.nameRules == true &&
+        this.contactFormValidation.emailRules == true &&
+        this.contactFormValidation.contentsRules ==true 
+      ) {
+        return false
+      }
+      return true
+    }
   }
-};
+};*/
 </script>
 
 <style scoped>
