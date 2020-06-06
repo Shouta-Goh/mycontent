@@ -34,6 +34,9 @@ module.exports = {
     CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
   },
   head: {
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#'
+    },
     title: "Prog-LifeHack",
     meta: [
       { charset: "utf-8" },
