@@ -8,21 +8,21 @@
           何か気になることがありましたら
           <br />お気軽にお問い合わせください
         </p>
-        <v-form method="post" netlify>
+        <v-form method="post" netlify name="contact">
           <v-text-field v-show="false" v-model="title" name="form-name" />
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="name" label="name" name="name" autofocus />
+              <v-text-field v-model="name" label="name" name="name" :rules="contactFormValidation.nameRules" autofocus />
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-text-field v-model="email" label="E-mail" name="email" />
+              <v-text-field v-model="email" label="E-mail" name="email" :rules="contactFormValidation.emailRules" />
             </v-col>
           </v-row>
           <v-row>
             <v-col cols="12">
-              <v-textarea v-model="message" label="message" name="message" />
+              <v-textarea v-model="message" label="message" name="message" :rules="contactFormValidation.contentsRules" />
             </v-col>
           </v-row>
           <v-row>
@@ -43,7 +43,12 @@ export default {
       title: "contact",
       name: "",
       email: "",
-      message: ""
+      message: "",
+      contactFormValidation: {
+        nameRules: [v => !!v || "名前は必須項目です"],
+        emailRules: [v => !!v || "メールアドレスは必須項目です"],
+        contentsRules: [v => !!v || "内容は必須項目です"]
+      }
     };
   },
   computed: {
@@ -55,49 +60,6 @@ export default {
     }
   }
 };
-/*
-export default {
-  data: () => ({
-    contactForm: {
-      name: "",
-      contents: "",
-      email: "",
-      loading: false,
-      title: "contact"
-    },
-    contactFormValidation: {
-      valid: false,
-      nameRules: [v => !!v || "名前は必須項目です"],
-      emailRules: [
-        v => !!v || "メールアドレスは必須項目です",
-        v => /.+@.+\..+/.test(v) || "メールアドレスを正しく入力してください"
-      ],
-      contentsRules: [v => !!v || "内容は必須項目です"]
-    },
-    snackBar: {
-      show: false,
-      color: "",
-      message: ""
-    }
-  }),
-  methods: {
-    validate() {
-      this.$refs.form.validate();
-    }
-  },
-  computed: {
-    isValid () {
-      if (
-        this.contactFormValidation.nameRules == true &&
-        this.contactFormValidation.emailRules == true &&
-        this.contactFormValidation.contentsRules ==true 
-      ) {
-        return false
-      }
-      return true
-    }
-  }
-};*/
 </script>
 
 <style scoped>
