@@ -32,7 +32,16 @@ module.exports = {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "あなたのプログラミングを助ける、少しのキッカケ" }
+      { hid: "description", name: "description", content: "あなたのプログラミングでの挫折を防いで、叶えたい目標を実現できる。そんな科学的に正しいライフハックを、すぐに試せるカタチで発信します。" },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: 'https://prog-lifehack.com' },
+      { hid: 'og:title', property: 'og:title', content: 'Prog-LifeHack' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'Prog-LifeHack' },
+      { hid: 'og:image', property: 'og:image', content: '/images/header.png' },
+      //{ property: 'article:publisher', content: 'FacebookURL' },
+      //{ property: 'fb:app_id', content: 'FacebookAppID' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@shou_9648' },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
@@ -94,6 +103,7 @@ module.exports = {
     description: 'あなたのプログラミングを助ける、少しのキッカケ',
     'og:description': 'あなたのプログラミングを助ける、少しのキッカケ',
     background_color: '#3F51B5',
+    theme_color: '#3F51B5',
     display: 'standalone',
   },
   

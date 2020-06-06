@@ -146,7 +146,7 @@ box {
     line-height: 1.5;
     background-color: #f5f5f5;
   }
-    p {
+  p {
     font-size: 2.5rem;
   }
   ul {
@@ -158,25 +158,23 @@ box {
       font-size: 2.5rem;
     }
   }
-  ol {
-    li {
-      padding: 6px 0;
-      border-bottom: 4px solid #ccc;
-      color: #333;
-      line-height: 1.5;
-      position: relative;
-      font-size: 2.5rem;
-    }
-    li:before {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100px;
-      height: 4px;
-      background-color: #6088c6;
-      z-index: 2;
-    }
+  h3 {
+    padding: 6px 0;
+    border-bottom: 4px solid #ccc;
+    color: #333;
+    line-height: 1.5;
+    position: relative;
+    font-size: 2.5rem;
+  }
+  h3:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background-color: #6088c6;
+    z-index: 2;
   }
   img {
     width: 70%;
@@ -227,6 +225,9 @@ box {
   .copy {
     h2 {
       font-size: 1.7rem;
+    }
+    h3 {
+      font-size: 1.6rem;
     }
     p {
       font-size: 1.5rem;
