@@ -13,6 +13,12 @@ const cmaClient = cmaContentful.createClient({
   accessToken: ctfConfig.CTF_CMA_ACCESS_TOKEN
 })
 
+const TITLE = 'Prog-LifeHack',
+const DESC = 'プログラミングでの挫折を防げる、科学的に正しいライフハックを、すぐに試せるカタチで。'
+const BASE_URL = 'https://prog-lifehack.com',
+const OGIMG_URL = '${BASE_URL}/twitter.png',
+const TWITTER_ID = '@shou_9648'
+
 module.exports = {
   /*
    ** Headers of the page
@@ -32,16 +38,16 @@ module.exports = {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "あなたのプログラミングでの挫折を防いで、叶えたい目標を実現できる。そんな科学的に正しいライフハックを、すぐに試せるカタチで発信します。" },
+      { hid: "description", name: "description", content: DESC },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      { hid: 'og:url', property: 'og:url', content: 'https://prog-lifehack.com' },
-      { hid: 'og:title', property: 'og:title', content: 'Prog-LifeHack' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'Prog-LifeHack' },
-      { hid: 'og:image', property: 'og:image', content: '/images/header.png' },
+      { hid: 'og:url', property: 'og:url', content: BASE_URL },
+      { hid: 'og:title', property: 'og:title', content: TITLE },
+      { hid: 'og:site_name', property: 'og:site_name', content: TITLE },
+      { hid: 'og:image', property: 'og:image', content: OGIMG_URL },
       //{ property: 'article:publisher', content: 'FacebookURL' },
       //{ property: 'fb:app_id', content: 'FacebookAppID' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@shou_9648' },
+      { name: 'twitter:site', content: TWITTER_ID },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
@@ -95,13 +101,13 @@ module.exports = {
   ],
 
   manifest: {
-    name: 'Prog-LifeHack',
+    name: TITLE,
     lang: 'ja',
-    short_name: 'Prog-LifeHack',
-    title: 'Prog-LifeHack',
-    'og:title': 'Prog-LifeHack',
-    description: 'あなたのプログラミングを助ける、少しのキッカケ',
-    'og:description': 'あなたのプログラミングを助ける、少しのキッカケ',
+    short_name: TITLE,
+    title: TITLE,
+    'og:title': TITLE,
+    description: DESC,
+    'og:description': DESC,
     background_color: '#3F51B5',
     theme_color: '#3F51B5',
     display: 'standalone',
