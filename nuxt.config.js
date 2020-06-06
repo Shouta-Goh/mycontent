@@ -46,7 +46,7 @@ module.exports = {
       { hid: 'og:url', property: 'og:url', content: BASE_URL },
       { hid: 'og:title', property: 'og:title', content: TITLE },
       { hid: 'og:site_name', property: 'og:site_name', content: TITLE },
-      { hid: 'og:image', property: 'og:image', content: '~/assets/images/ogpimg.png' },
+      { hid: 'og:image', property: 'og:image', content: 'https://prog-lifehack.com/ogpimg.png' },
       //{ property: 'article:publisher', content: 'FacebookURL' },
       //{ property: 'fb:app_id', content: 'FacebookAppID' },
       { name: 'twitter:card', content: 'summary_large_image' },
