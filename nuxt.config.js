@@ -16,7 +16,7 @@ const cmaClient = cmaContentful.createClient({
 const TITLE = 'Prog-LifeHack'
 const DESC = 'プログラミングでの挫折を防げる、科学的に正しいライフハックを、すぐに試せるカタチで。'
 const BASE_URL = 'https://prog-lifehack.com'
-const OGIMG_URL = '${BASE_URL}/img/ogp/twitter.png'
+const OGIMG_URL = '${BASE_URL}/ogpimg.png'
 const TWITTER_ID = '@shou_9648'
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
       { hid: 'og:url', property: 'og:url', content: BASE_URL },
       { hid: 'og:title', property: 'og:title', content: TITLE },
       { hid: 'og:site_name', property: 'og:site_name', content: TITLE },
-      { hid: 'og:image', property: 'og:image', content: 'https://prog-lifehack.com/ogpimg.png' },
+      { hid: 'og:image', property: 'og:image', content: OGIMG_URL },
       //{ property: 'article:publisher', content: 'FacebookURL' },
       //{ property: 'fb:app_id', content: 'FacebookAppID' },
       { name: 'twitter:card', content: 'summary_large_image' },
