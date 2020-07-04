@@ -116,7 +116,6 @@ module.exports = {
     display: 'standalone',
   },
   
-      // プッシュ通知
     oneSignal: {
       init: {
         appId: config.ONE_PUSH_APP_ID,
