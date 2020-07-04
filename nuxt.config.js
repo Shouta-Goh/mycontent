@@ -116,16 +116,6 @@ module.exports = {
     display: 'standalone',
   },
   
-    oneSignal: {
-      init: {
-        appId: config.ONE_PUSH_APP_ID,
-        allowLocalhostAsSecureOrigin: true,
-        welcomeNotification: {
-          disable: true
-        }
-      }
-    },
-  
   generate: {
     routes () {
       return Promise.all([
